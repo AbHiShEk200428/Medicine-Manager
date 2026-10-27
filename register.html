@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 40px 16px;
+        }
+
+        #Login_page, #Register_page, #login_control {
+            background-color: #ffffff;
+            border: 1px solid #587fb1;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(76, 115, 173, 0.06);
+            padding: 40px;
+            width: 350px;
+            height: auto;
+            margin: 20px auto;
+            box-sizing: border-box;
+        }
+
+        #Register_page {
+            display: none;
+        }
+
+        label {
+            margin: 8px 0 4px 0;
+            display: block;
+            color: #475569;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input, select {
+            margin: 4px 0 12px 0;
+            padding: 8px 12px;
+            width: 90%;
+            border: 1px solid #76a6e1;
+            border-radius: 6px;
+            background-color: #f8fafc;
+            color: #0f172a;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin: 6px 4px;
+            cursor: pointer;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        #Login_Btn, #Register_Btn {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            width: 90%;
+            margin-top: 8px;
+        }
+
+        #Login_Btn:hover, #Register_Btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        #Gen_password {
+            background-color: #f1f5f9;
+            color: #2563eb;
+            border: 1px solid #3565a0;
+            padding: 6px 12px;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        #Gen_password:hover {
+            background-color: #e0f2fe;
+            border-color: #93c5fd;
+        }
+
+        #Log_Btn, #Register_show {
+            background-color: #f8fafc;
+            color: #334155;
+            border: 1px solid #27aa39;
+            padding: 6px 20px;
+            margin: 4px;
+            
+        }
+
+        #Log_Btn:hover, #Register_show:hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
+        }
+
+        #Login_validity, #Register_validity {
+            font-size: 13px;
+            font-weight: 500;
+            color: #dc2626 !important;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div id="Login_page">
+     <form action="login.html" method="post">
+        <label for="Login_username">Username</label>
+        <input type="text" id="Login_username">
+    <br>
+        <label for="Login_password">Password</label>
+        <input type="password" id="Login_password">
+        <br>
+        <label for="remember" style="display: inline;">Remember me</label>
+        <input type="checkbox" style="display: inline">
+<br>
+        <button id="Login_Btn">LOGIN</button>
+        <p id="Login_validity" style="color: red;"></p>
+    </form>
+    
+
+<script>
+    const Login=document.getElementById("Login_Btn");
+    Login.addEventListener("click",function(){
+        event.preventDefault();
+
+        const Username=document.getElementById("Login_username").value;
+        const Password=document.getElementById("Login_password").value;
+        const Login_validity= document.getElementById("Login_validity");
+        const passlength= Password.length;
+        const Username_length= Username.length;
+
+        if (Username == "" || Username == null) {
+            Login_validity.textContent = "Enter a valid username";
+        }
+        else if (Username_length < 6) {
+            Login_validity.textContent = "Username cant be less than 6 characters";
+        }
+        else if (Password == "" || Password == null) {
+            Login_validity.textContent = "Enter a valid password";
+        }
+        else if(Password.length < 8){
+            Login_validity.textContent="Password cant be less than 8 characters";
+        }
+        else{
+            window.location.href= "user_management.html"
+        }
+    })
+</script>
+</div> 
+    <div id="Register_page">
+    <form action="login.html" method="post">
+        <label for="Fname_input">Fullname:</label>
+        <input type="text" id="Fname_input">
+        <br>
+        
+        <label for="Username_inpu">Username:</label>
+        <input type="text" id="Username_input">
+        <br>
+        <label for="Email_input">Email:</label>
+        <input type="email" id="Email_input">
+        <br>
+        <label for="Phone_input">Phone:</label>
+        <input type="number" min="10" max="10" id="Phone_input">
+        <br>
+        <label for="User_role">Role</label>
+        <select name="Role" id="User_role">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+            <option value="Supplier">Supplier</option>
+        </select>
+        <br>
+        <label for="Password_input">Password</label>
+        <input type="password" id="Password_input">
+        <button type="button" id="Gen_password">Generate password</button>
+        <br>
+        <label for="Cpassword_input">Confirm password</label>
+        <input type="text" id="Cpassword_input">
+        <br>
+        <br>
+        <button type="submit" id="Register_Btn">Register</button>
+
+    </form>
+    <p id="Register_validity" style="color: red;"></p> 
+
+
+<script>
+    const Register = document.getElementById("Register_Btn");
+    Register.addEventListener("click", function (event) { 
+
+        event.preventDefault();
+
+        const Fullname = document.getElementById("Fname_input").value;
+        const Username = document.getElementById("Username_input").value;
+        const Email = document.getElementById("Email_input").value;
+        let Phone = document.getElementById("Phone_input").value;
+        const Role = document.getElementById("User_role").value;
+        const Password = document.getElementById("Password_input").value;
+        const Confirm_pass = document.getElementById("Cpassword_input").value;
+        let Register_validity = document.getElementById("Register_validity");
+
+        const Pass_length = Password.length;
+        const Username_length = Username.length;
+        const Email_array = ["@gmail.com", "@email.com", "@outlook.com"];
+        const Email_valid = Email_array.some(domain => Email.endsWith(domain));
+        const Phone_length = Phone.length;
+
+
+        Phone = Number(Phone)
+
+        if (Fullname == "" || Fullname == null) {
+            Register_validity.textContent = "Enter full name";
+        }
+        else if (Username == "" || Username == null) {
+            Register_validity.textContent = "Enter a valid username";
+        }
+        else if (Username_length < 6) {
+            Register_validity.textContent = "Username cant be less than 6 characters";
+        }
+        else if (Email == "" || Email == null) {
+            Register_validity.textContent = "Enter a valid Email";
+        }
+        else if (!Email_valid) {
+            Register_validity.textContent = "Only enter a email address";
+        }
+        else if (Phone == null || Phone == "") {
+            Register_validity.textContent = "Enter a valid Phone number";
+        }
+        else if (Phone_length < 10||Phone_length>10) {
+            Register_validity.textContent = "A phone number has 10 digits";
+        } 
+        else if (Password == "" || Password == null) {
+            Register_validity.textContent = "Enter a valid password";
+        }
+        else if (Pass_length < 8) {
+            Register_validity.textContent = "The password must contain atleast 8 characters";
+        }
+        else if (Password != Confirm_pass) {
+            Register_validity.textContent = "The confirm pass doesnt match";
+        }
+        else {
+            window.location.href = "user_management.html";
+        }
+
+    });
+
+    const GenPasswordBtn = document.getElementById("Gen_password");
+    GenPasswordBtn.addEventListener("click", function () {
+        const pass_length = 12;
+        const lower_case = true;
+        const upper_case = true;
+        const symbols=true;
+        const numbers = true;
+        const Usersname = document.getElementById("Username_input").value;
+        const Register_validity = document.getElementById("Register_validity");
+
+        if (Usersname.length < 6) {
+            Register_validity.textContent = "Username should be at least 6 characters";
+            return;
+        }
+
+        function generate_pass(pass_length, lower_case, upper_case, numbers,symbols, Usersname) {
+            let New_username = Usersname.slice(0, 7);
+            const lowercase = "abcdefghijklmnopqrstuvwxyz";
+            const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const number_s = "1234567890";
+            const symbol_s="!@#$%^&*()/?"
+
+            let allowed_chars = "";
+            let password = New_username;
+
+            allowed_chars += lower_case == true ? lowercase : "";
+            allowed_chars += upper_case == true ? uppercase : "";
+            allowed_chars += numbers == true ? number_s : "";
+            allowed_chars += numbers == true ? symbol_s : "";
+            pass_length=12-New_username.length;
+            for (let i = 0; i < pass_length; i++) {
+                const random_index = Math.floor(Math.random() * allowed_chars.length);
+                password += allowed_chars[random_index];
+            }
+            return password;
+        }
+
+        let password = generate_pass(pass_length, lower_case, upper_case, numbers,symbols, Usersname);
+
+        const PasswordInput = document.getElementById("Password_input");
+        const ConfirmPassInput = document.getElementById("Cpassword_input");
+
+        PasswordInput.value = password;
+        ConfirmPassInput.value = password;
+        Register_validity.textContent = "";
+    });
+</script>
+</div>
+    <div id="login_control">
+     <div style="text-align: center;" class="alt_links">
+        <label for="Log_Btn">Already have an account?</label>
+        <button type="button" id="Log_Btn">Login</button><br>
+        <label for="Register_show">New registration?</label>
+        <button type="button" id="Register_show">SignUp</button>
+    </div>
+</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){ 
+        $("#Log_Btn").click(function(){ 
+            $("#Register_page").hide();
+            $("#Login_page").fadeIn(500);
+    
+        });
+        $("#Register_show").click(function(){
+            $("#Login_page").hide();
+            $("#Register_page").fadeIn(500);
+            
+        }); 
+         
+    });
+</script>
+
+
+
+</body>
+</html>

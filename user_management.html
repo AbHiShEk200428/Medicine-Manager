@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="" href="">
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="Sidebar.js"></script>
+    <style>
+        #Add_user{
+            width: 300px;height: 50px;
+            background-color: pink;
+            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-radius: 10px; border: 2px solid; 
+            cursor: pointer;
+        }
+        #Add_user:hover{
+            border-radius: 10px;
+            background-color: rgb(174, 69, 87);
+            border: 2px solid whitesmoke;
+        }  
+  
+        
+    </style>
+</head>
+<body>
+<h1 id="Menubar_Call">Users</h1>
+<div style="display: block;">
+
+    <hr>
+    <br>
+    <form action="user_management.html" id="User_form"  >
+
+        <div class="Form_sections" >
+            <label for="Add_Fullname">Fullname:</label>
+         <br>
+            <input type="text" id="Add_Fullname"  >
+        </div>
+ 
+        <div class="Form_sections"  >
+            <label for="Add_Username">Username:</label>
+            <br>
+            <input type="text" id="Add_Username"    >
+        </div>
+ <br>
+        <div class="Form_sections" >
+            <label for="Add_Email">Email:</label>
+            <br>
+            <input type="text" id="Add_Email" >
+        </div>
+
+        <div class="Form_sections">
+                    <label for="Add_Role">Role</label>
+                    <br>
+                    <select name="Role" id="Add_Role">
+                        <option value="None">Select</option>
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option> 
+                    </select>
+        </div>
+
+        <br>
+        <p id="User_validity"></p> <br>
+    
+    </form>    
+    
+</div>
+ <br>
+         <button id="Add_user">Add user</button>  
+ 
+<br>
+<br>
+<br style="padding: bottom 100px;;">
+<div>
+<label for="Search_input">Search</label>
+<input type="text" id="Search_input">
+<button id="Search_Btn">Search User</button>
+ <br>
+ 
+<p id="Search_validity"></p>
+</div>
+<br>
+<br>
+<table id="User_table">
+    <thead>
+        <tr >
+        <th>ID</th>
+        <th>Fullname</th>
+        <th>Username</th>
+        <th>Role</th> 
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>01</td>
+        <td>Abhishek</td>
+        <td>Abhi123</td>
+        <td><b>Admin</b></td>
+        <td><button>Edit</button>/ <button>Delete</button></td>
+    </tr>
+    </tbody>
+    
+ 
+</table>
+
+<script>
+    
+$(document).ready(function(){
+    let User_ID=2;
+$("#Add_user").click(function(e){
+    e.preventDefault();
+  
+    let Fullname= document.getElementById("Add_Fullname").value;
+    let Username=document.getElementById("Add_Username").value;
+    let Email= document.getElementById("Add_Email").value;
+    let Role= document.getElementById("Add_Role").value;
+    var new_row=`
+        <tr>
+        <td>${User_ID}</td>
+        <td>${Fullname}</td>
+        <td>${Username}</td> 
+        <td><b>${Role}</b></td>
+        <td><button>Edit</button> / <button>Delete</button></td>
+        </tr>`;
+
+    let User_validity=document.getElementById("User_validity");
+    let Email_validity=Email.includes("@gmail.com");
+        if(Fullname==""||Fullname==null){
+            User_validity.textContent="Fullname cant be empty";
+        }
+        else if(Username==""||Username==null){
+            User_validity.textContent="Username field cant be empty";
+        }
+
+        else if(Email==""||Email==null){
+            User_validity.textContent="Email is required";
+
+        }
+        else if(Role=="None"){
+            User_validity.textContent="Select a role.";
+        }
+        else if(!Email_validity){
+                User_validity.textContent="Enter an valid email only";
+        }
+
+        else{
+            $("#User_table tbody").append(new_row);//Add new table row
+            User_ID++; //Increment ID
+            
+            //Reset input field=
+            document.getElementById("Add_Fullname").value="";
+            Username=document.getElementById("Add_Username").value="";
+            Email= document.getElementById("Add_Email").value="";
+            Role= document.getElementById("Add_Role").value="None";
+        }  
+        });
+
+$("#Search_Btn").click(function(e){
+        e.preventDefault();
+    let Search_input=document.getElementById("Search_input").value;
+    Search_input=Search_input.toLowerCase().trim();
+    if(Search_input==""||Search_input==null){
+            $("#Search_validity").text("Enter in search input");
+        }
+       
+        $("#User_table tbody tr").each(function(){
+        
+            let row_search=$(this).text().toLowerCase();
+            
+            if(row_search.includes(Search_input)){
+                $(this).show();
+            }
+            else{
+                $(this).hide();
+            } 
+        });
+
+    });
+ 
+
+});
+
+
+ 
+ 
+</script>
+</body>
+</html>

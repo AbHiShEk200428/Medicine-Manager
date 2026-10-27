@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="Sidebar.js"></script>
+        <style>
+        #ReturnMed_Btn{
+            width: 300px;height: 50px;
+            background-color: pink;
+            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-radius: 10px; border: 2px solid; 
+            cursor: pointer;
+        }
+        #ReturnMed_Btn:hover{
+            border-radius: 10px;
+            background-color: rgb(174, 69, 87);
+            border: 2px solid whitesmoke;
+        }  
+        #Add_Remarks{
+            width: 300px;height: 150px;
+            margin: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 id="Menubar_Call">Medicine Return</h1>
+<br>
+<hr>
+    <form action="return.html">
+        <div class="Form_sections">
+            <label for="">Medicine</label><br>
+            <select name="" id="Add_Medicine">
+                <option value="None">==Select==</option>
+                <option value="">Paracetamol</option>
+                <option value="">Cetrizine</option>
+            </select>
+        </div>
+        
+        <div class="Form_sections">
+            <label for="">Medicine</label><br>
+            <select name="" id="Add_Medicine">
+                <option value="None">==Select==</option>
+                <option value="">Paracetamol</option>
+                <option value="">Cetrizine</option>
+            </select>
+        </div>
+      
+        <div class="Form_sections">
+            <label for="">Batch</label><br>
+            <select name="" id="Add_Batch">
+                <option value="None">==Select==</option>
+                <option value="">P001</option>
+            </select>
+        </div>
+        
+        <div class="Form_sections">
+                <label for="">Current quantity</label><br>
+                <p id="Available_Stock">[]</p> 
+        </div>
+        
+        <div class="Form_sections">
+            <label for="">Return Quantity</label><br>
+            <input type="number" min="1" id="Add_ReturnQty">
+        </div>
+        
+        <div class="Form_sections">
+            <label for="">Customer</label><br>
+            <input type="text" id="Add_Customer">
+        </div>
+       
+        <div class="Form_sections">
+            <label for="">Return Date</label><br>
+            <input type="date" id="Return_Date">
+        </div>
+        
+        <div class="Form_sections">
+            <label for="">Reason</label><br>
+            <input type="text" id="Add_reason">
+        </div>
+
+        <div class="Form_sections">
+            <label for="">remarks</label><br>
+            <input type="text" id="Add_Remarks">
+        </div>
+        <br>
+        <button id="ReturnMed_Btn">Return Medicine</button>
+        <br>
+    </form>
+
+<table id="MedReturn_Table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Medicine</th>
+            <th>Batch</th>
+            <th>Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr> 
+            <td>1</td>
+            <td>Paracetamol</td>
+            <td>P001</td>
+            <td>10</td>
+            <td>09-09-2026</td>
+        
+        </tr> 
+    </tbody>
+</table>
+
+</body>
+</html>

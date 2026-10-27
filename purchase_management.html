@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+     
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+
+    <link rel="stylesheet" href="style.css">
+    <script src="Sidebar.js"></script>
+    <style>
+        #Add_PurchaseBtn{
+            width: 300px;height: 50px;
+            background-color: pink;
+            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-radius: 10px; border: 2px solid; 
+            cursor: pointer;
+        }
+        #Add_PurchaseBtn:hover{
+            border-radius: 10px;
+            background-color: rgb(174, 69, 87);
+            border: 2px solid whitesmoke;
+        }  
+        #Add_Remarks{
+            height: 150px;width: 300px;
+        }
+  
+        
+    </style>
+</head>
+<body>
+    <h1 id="Menubar_Call">Purchase Management</h1>
+    <br>
+    <hr>
+    <form action="purchase_management.html" id="Purchase_form">
+
+    <div class="Form_sections">
+        <label for="Add_Supplier">Supplier</label><br>
+        <select name="Supplier" id="Add_Supplier" >
+            <option value="">-- Select Supplier --</option>
+            <option value="ABC Pharma">ABC Pharma</option>
+            <option value="MedLife">MedLife</option>
+        </select>
+    </div> 
+    <div class="Form_sections">
+        <label for="Add_PurchaseDate">Purchase date</label><br>
+        <input type="date" id="Add_PurchaseDate">
+    </div>
+    <div class="Form_sections">
+        <label for="Add_Medicine">Medicine</label><br>
+        <input type="text" id="Add_Medicine">
+    </div>
+    <div class="Form_sections">
+        <label for="Add_BatchNum">Batch Number</label><br>
+        <input type="text" id="Add_BatchNum">
+    </div>
+    <div class="Form_sections">
+        <label for="Add_Manufacture">Manufacturing</label><br>
+        <input type="text" id="Add_Manufacture">
+    </div>
+    
+    <div class="Form_sections">
+        <label for="Add_ExpiryDate">Expiry Date</label><br>
+        <input type="date" id="Add_ExpiryDate">
+    </div>
+    <div class="Form_sections">
+        <label for="Add_Quantity">Quantity</label><br>
+        <input type="number" min="1" id="Add_Quantity">
+    </div>
+    <div class="Form_sections">
+        <label for="Add_PurchasePrice">Purchase Price</label><br>
+        <input type="number" id="Add_PurchasePrice">
+    </div>
+    <div class="Form_sections">
+        <label for="Add_SellingPrice">Selling Price</label><br>
+        <input type="number" id="Add_SellingPrice">
+    </div>
+    <div class="Form_sections" >
+        <label for="Add_Remarks">Remarks</label><br>
+        <input type="text" id="Add_Remarks">
+    </div>
+
+    <br>
+    <button id="Add_PurchaseBtn">Add Purchase</button>
+    <p id="Purchase_Validity"></p>
+    </form>
+<br>
+<label for="Search_input">Search</label>  
+<input type="text" id="Search_input">
+<button id="Search_Btn">Search</button>
+<p id="Search_validity"></p>
+<br>
+
+<table id="Purchase_Table">
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>Supplier</th>
+        <th>Medicine</th>
+        <th>Batch</th>
+        <th>Quantity</th>
+        <th>Expiry Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+ 
+    <tr>
+        <td>1</td>
+        <td>ABC</td>
+        <td>Paracetamol</td>
+        <td>P001</td>
+        <td>100</td>
+        <td>09-09-26</td>
+        <td><button class="Purchase_Edit">Edit</button> / <button class="Purchase_Delete">Delete</button></td>
+    </tr>
+    
+    </tbody>
+    
+</table>
+
+<script>
+    $(document).ready(function(){
+     let Purchase_ID=2;
+     $("#Add_PurchaseBtn").click(function(event){
+        event.preventDefault();
+
+        let Supplier= document.getElementById("Add_Supplier").value; 
+        let PurchaseDate= document.getElementById("Add_PurchaseDate").value;
+        let Medicine= document.getElementById("Add_Medicine").value;
+        let Batch= document.getElementById("Add_BatchNum").value;
+        let Manufacture= document.getElementById("Add_Manufacture").value;
+        let Expiry= document.getElementById("Add_ExpiryDate").value;
+        let Quantity= document.getElementById("Add_Quantity").value;
+        let PurchasePrice= document.getElementById("Add_PurchasePrice").value;
+        let SellingPrice= document.getElementById("Add_SellingPrice").value;
+        let Remarks= document.getElementById("Add_Remarks").value;
+        var new_row=`
+        <tr>
+        <td>${Purchase_ID}</td>
+        <td>${Supplier}</td>
+        <td>${Medicine}</td> 
+        <td>${Batch}</td>
+        <td>${Quantity}</td>
+        <td>${Expiry}</td>
+        <td><button class="Purchase_Edit">Edit</button>/ <button class="Purchase_Delete">Delete</button></td>
+        </tr>`;
+        let Purchase_Validity= document.getElementById("Purchase_Validity");
+
+        
+        if(Supplier==""||Supplier==null){
+              Purchase_Validity.textContent="Supplier name is Empty";
+        }
+        else if(PurchaseDate==""||PurchaseDate==null){
+            Purchase_Validity.textContent="Purchase date is Empty";
+        }
+        else if(Medicine==""||Medicine==null){
+            Purchase_Validity.textContent="Medicine name is Empty";
+        }
+        else if(Batch==""||Batch==null){
+            Purchase_Validity.textContent="Batch number is Empty";
+        }
+        else if(Manufacture==""||Manufacture==null){
+            Purchase_Validity.textContent="Manufacture name is Empty";
+        }
+        else if(Expiry==""||Expiry==null){
+            Purchase_Validity.textContent="Expiry date is Empty";
+        }
+        else if(Quantity==""||Quantity==null){
+            Purchase_Validity.textContent="Quantity is Empty";
+        }
+        else if(PurchasePrice==""||PurchasePrice==null){
+            Purchase_Validity.textContent="Purchase price is Empty";
+        }
+        else if(SellingPrice==""||SellingPrice==null){
+            Purchase_Validity.textContent="Selling price is Empty";
+        }
+        else{
+            $("#Purchase_Table tbody").append(new_row);
+            Purchase_ID++;
+
+            document.getElementById("Add_Supplier").value="";
+            document.getElementById("Add_PurchaseDate").value="";
+            document.getElementById("Add_Medicine").value="";
+            document.getElementById("Add_BatchNum").value="";
+            document.getElementById("Add_Manufacture").value="";
+            document.getElementById("Add_ExpiryDate").value="";
+            document.getElementById("Add_Quantity").value="";
+            document.getElementById("Add_PurchasePrice").value="";
+            document.getElementById("Add_SellingPrice").value="";
+            document.getElementById("Add_Remarks").value="";
+            document.getElementById("Purchase_Validity").textContent="";
+        }
+
+     });
+
+    $("#Search_Btn").click(function(e){
+        e.preventDefault();
+    let Search_input=document.getElementById("Search_input").value;
+    Search_input=Search_input.toLowerCase().trim();
+    if(Search_input==""||Search_input==null){
+        $("#Search_validity").text("Enter in search input");
+        }
+       
+        $("#Purchase_Table tbody tr").each(function(){
+        
+            let row_search=$(this).text().toLowerCase();
+            
+            if(row_search.includes(Search_input)){
+                $(this).show();
+            }
+            else{
+                $(this).hide();
+            } 
+        });
+
+    });  
+ 
+    });
+</script>
+</body>
+</html>

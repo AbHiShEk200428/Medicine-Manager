@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="style.css">
+    <script src="Sidebar.js"></script>
+        <style>
+        #Add_SupplierBtn{
+            width: 300px;height: 50px;
+            background-color: pink;
+            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-radius: 10px; border: 2px solid; 
+            cursor: pointer;
+        }
+        #Add_SupplierBtn:hover{
+            border-radius: 10px;
+            background-color: rgb(174, 69, 87);
+            border: 2px solid whitesmoke;
+        }  
+  
+        
+    </style>
+</head>
+<body>
+    <h1 id="Menubar_Call">Suppliers</h1>
+    <hr>
+    <form action="supplier_management.html" id="Supplier_form">
+        <div class="Form_sections">
+            <label for="Add_Supplier">Supplier Name</label><br>
+            <input type="text" id="Add_Supplier">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_Contact">Contact Person</label><br>
+            <input type="text" id="Add_Contact">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_Phone">Phone</label><br>
+            <input type="number" id="Add_Phone">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_Email">Email</label><br>
+            <input type="email" id="Add_Email">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_Address">Address</label><br>
+            <input type="text" id="Add_Address">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_GST">GST Number</label><br>
+            <input type="text" id="Add_GST">
+        </div>
+<br>
+        <button type="button" id="Add_SupplierBtn">Add Supplier</button>
+        <p id="Supplier_Validity"></p>
+    </form>
+
+    
+    <br>
+    <div style="text-align: left;">
+    <label for="Search_input">Search</label>  
+    <input type="text" id="Search_input">
+    <button id="Search_Btn">Search</button>
+    <p id="Search_validity"></p>   
+    </div>
+
+    <br>
+
+    <table id="Supplier_Table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supplier</th>
+                <th>Contact</th>
+                <th>Phone</th>
+                <td>Actions</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>ABC Pharma</td>
+                <td>Anil</td>
+                <td>14343114</td>
+                <td><button class="Purchase_Edit">Edit</button> / <button class="Purchase_Delete">Delete</button></td>
+
+
+            </tr>
+        </tbody>
+    </table>
+
+<script>
+    $(document).ready(function(){
+        let Supplier_ID=2;
+        $("#Add_SupplierBtn").click(function(event){
+            event.preventDefault();
+            let Supplier= document.getElementById("Add_Supplier").value;
+            let Contact= document.getElementById("Add_Contact").value;
+            let Phone= document.getElementById("Add_Phone").value;
+            let Email= document.getElementById("Add_Email").value;
+            let Address= document.getElementById("Add_Address").value;
+            let GSTNumber= document.getElementById("Add_GST").value;
+            var new_row=`
+                <tr>
+                <td>${Supplier_ID}</td>
+                <td>${Supplier}</td> 
+                <td>${Contact}</td>   
+                <td>${Phone}</td> 
+                <td><button>Edit</button>/ <button>Delete</button></td>
+                </tr>`;
+
+            let Supplier_Validity= document.getElementById("Supplier_Validity");
+            let Email_validity=Email.includes("@gmail.com");
+        if(Supplier==""||Supplier==null){
+            Supplier_Validity.textContent="Enter Supplier name";
+        }
+        else if(Contact==""||Contact==null){
+            Supplier_Validity.textContent="Enter Contact name";
+        }
+        else if(Phone==""||Phone==null){
+            Supplier_Validity.textContent="Enter Phone number";
+        }
+        else if(Email==""||Email==null){
+            Supplier_Validity.textContent="Enter a valid Email";
+        }
+        else if(!Email_validity){
+            Supplier_Validity.textContent="Enter valid Email";
+        }
+        else if(Address==""||Address==null){
+            Supplier_Validity.textContent="Enter the Address";
+        }
+        else if(GSTNumber==""||GSTNumber==null){
+            Supplier_Validity.textContent="Enter the GST Number";
+        }
+        else {
+            $("#Supplier_Table tbody").append(new_row);
+            Supplier_ID++;
+
+            document.getElementById("Add_Supplier").value="";
+            document.getElementById("Add_Contact").value="";
+            document.getElementById("Add_Phone").value="";
+            document.getElementById("Add_Email").value="";
+            document.getElementById("Add_Address").value="";
+            document.getElementById("Add_GST").value="";
+
+        }
+        });
+        $("#Search_Btn").click(function(e){
+            e.preventDefault();
+        let Search_input=document.getElementById("Search_input").value;
+        Search_input=Search_input.toLowerCase();
+        if(Search_input==""||Search_input==null){
+            $("#Search_validity").text("Enter in search input");
+        }
+        
+            $("#Supplier_Table tbody tr").each(function(){
+            
+                let row_search=$(this).text().toLowerCase();
+                
+                if(row_search.includes(Search_input)){
+                    $(this).show();
+                }
+                else{
+                    $(this).hide();
+                } 
+            });
+
+        });
+});
+</script>
+</body>
+</html>
