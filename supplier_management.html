@@ -29,8 +29,8 @@
     <hr>
     <form action="supplier_management.html" id="Supplier_form">
         <div class="Form_sections">
-            <label for="Add_Supplier">Supplier Name</label><br>
-            <input type="text" id="Add_Supplier">
+            <label for="Supplier_Name">Supplier Name</label><br>
+            <input type="text" id="Supplier_Name">
         </div>
         <div class="Form_sections">
             <label for="Add_Contact">Contact Person</label><br>
@@ -41,8 +41,8 @@
             <input type="number" id="Add_Phone">
         </div>
         <div class="Form_sections">
-            <label for="Add_Email">Email</label><br>
-            <input type="email" id="Add_Email">
+            <label for="Supplier_Email">Email</label><br>
+            <input type="email" id="Supplier_Email">
         </div>
         <div class="Form_sections">
             <label for="Add_Address">Address</label><br>
@@ -60,10 +60,10 @@
     
     <br>
     <div style="text-align: left;">
-    <label for="Search_input">Search</label>  
-    <input type="text" id="Search_input">
-    <button id="Search_Btn">Search</button>
-    <p id="Search_validity"></p>   
+    <label for="supplier_search_input">Search</label>  
+    <input type="text" id="supplier_search_input">
+    <button id="supplier_search_btn">Search</button>
+    <p id="supplier_search_validity"></p>   
     </div>
 
     <br>
@@ -97,10 +97,10 @@
         let Supplier_ID=2;
         $("#Add_SupplierBtn").click(function(event){
             event.preventDefault();
-            let Supplier= document.getElementById("Add_Supplier").value;
+            let Supplier= document.getElementById("Supplier_Name").value;
             let Contact= document.getElementById("Add_Contact").value;
             let Phone= document.getElementById("Add_Phone").value;
-            let Email= document.getElementById("Add_Email").value;
+            let Email= document.getElementById("Supplier_Email").value;
             let Address= document.getElementById("Add_Address").value;
             let GSTNumber= document.getElementById("Add_GST").value;
             var new_row=`
@@ -139,21 +139,21 @@
             $("#Supplier_Table tbody").append(new_row);
             Supplier_ID++;
 
-            document.getElementById("Add_Supplier").value="";
+            document.getElementById("Supplier_Name").value="";
             document.getElementById("Add_Contact").value="";
             document.getElementById("Add_Phone").value="";
-            document.getElementById("Add_Email").value="";
+            document.getElementById("Supplier_Email").value="";
             document.getElementById("Add_Address").value="";
             document.getElementById("Add_GST").value="";
 
         }
         });
-        $("#Search_Btn").click(function(e){
+        $("#supplier_search_btn").click(function(e){
             e.preventDefault();
-        let Search_input=document.getElementById("Search_input").value;
+        let Search_input=document.getElementById("supplier_search_input").value;
         Search_input=Search_input.toLowerCase();
         if(Search_input==""||Search_input==null){
-            $("#Search_validity").text("Enter in search input");
+            $("#supplier_search_validity").text("Enter in search input");
         }
         
             $("#Supplier_Table tbody tr").each(function(){

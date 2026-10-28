@@ -1,0 +1,182 @@
+
+<hr>
+    <form action="medicine_management.html" id="medicine_form">
+
+    <div class="Form_sections">
+        <label for="Add_Medname">Medicine Name</label><br>
+        <input type="text" id="Add_Medname">
+    </div>
+
+    <div class="Form_sections">
+        <label for="Add_Genname">Generic Name</label><br>
+        <input type="text" id="Add_Genname">
+    </div >
+
+    <div class="Form_sections">
+        <label for="Add_Category">Category</label><br>
+        <input type="text" id="Add_Category">
+    </div>
+    
+    <div class="Form_sections">
+        <label for="Add_Manufacturer">Manufacturer</label><br>
+        <input type="text" id="Add_Manufacturer">
+    </div>
+    
+    <div class="Form_sections">
+        <label for="Add_Dosage">Dosage Form</label><br>
+        <input type="text" id="Add_Dosage">
+    </div>
+    
+    <div class="Form_sections">
+        <label for="Add_Strength">Strength</label><br>
+        <input type="text" id="Add_Strength">
+    </div>
+
+    <div class="Form_sections">
+        <label for="Add_ReorderLvL">Reorder Level</label><br>
+        <input type="text" id="Add_ReorderLvL">
+    </div>
+    
+    <div class="Form_sections">
+        <label for="Add_Description">Description</label><br>
+        <input type="text" id="Add_Description">
+    </div>
+<br>
+    <button id="AddMed_Btn">Add Medicine</button>
+    <p id="Medicine_validity"></p>
+    </form>
+<br>
+<br>
+<label for="Search_input">Search</label>
+<input type="text" id="Search_input">
+<button id="Search_Btn">Search User</button>
+<p id="Search_validity"></p>
+
+<br>
+<table id="Medicine_table">
+    <thead>
+    <tr >
+        <th>ID</th>
+        <th>Medicine</th>
+        <th>Category</th>
+        <th>Strength</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>01</td>
+        <td>Paracetamol</td>
+        <td>Painkiller</td>
+        <td>500mg</td>
+        <td><button>Edit</button>/ <button>Delete</button></td>
+    </tr>
+    </tbody>
+ 
+ 
+</table>
+
+
+<script>
+       
+$(document).ready(function(){
+    let Medicine_ID=2;
+    $("#AddMed_Btn").click(function(e){
+        e.preventDefault();
+    
+        let MedName= document.getElementById("Add_Medname").value;
+        let GenName=document.getElementById("Add_Genname").value;
+        let Category= document.getElementById("Add_Category").value;
+        let Manufacturer= document.getElementById("Add_Manufacturer").value;
+        let Dosage= document.getElementById("Add_Dosage").value;
+        let Strength= document.getElementById("Add_Strength").value;
+        let Reorder= document.getElementById("Add_ReorderLvL").value;
+        let Description= document.getElementById("Add_Description").value;
+        var new_row=`
+            <tr>
+            <td>${Medicine_ID}</td>
+            <td>${MedName}</td> 
+            <td>${Category}</td>   
+            <td>${Strength}</td> 
+            <td><button>Edit</button>/ <button>Delete</button></td>
+            </tr>`;
+
+        let Medicine_validity=document.getElementById("Medicine_validity"); 
+
+    if(MedName==""||MedName==null){
+        Medicine_validity.textContent="Medicine name cant be empty";
+    } 
+    else if(GenName==""||GenName==null){
+        Medicine_validity.textContent="Generic name is required";
+
+    }
+
+    else if(Category==""||Category==null){
+        Medicine_validity.textContent="Category is required";
+
+    }
+    else if(Manufacturer==""||Manufacturer==null){
+        Medicine_validity.textContent="Manufacturer is required";
+
+    }
+    else if(Dosage==""||Dosage==null){
+         Medicine_validity.textContent="Dosage is required";
+
+    }
+    else if(Strength==""||Strength==null){
+         Medicine_validity.textContent="Strength is required";
+
+    }
+    else if(Reorder==""||Reorder==null){
+        Medicine_validity.textContent="Reorder is required";
+
+    }
+    else if(Description==""||Description==null){
+        Medicine_validity.textContent="Description is required";
+
+    }
+    
+    else{
+        $("#Medicine_table tbody").append(new_row);//Add new table row
+        Medicine_ID++; //Increment ID
+        //Reset input field=
+        MedName= document.getElementById("Add_Medname").value="";
+        GenName=document.getElementById("Add_Genname").value="";
+        Category= document.getElementById("Add_Category").value="";
+        Manufacturer= document.getElementById("Add_Manufacturer").value="";
+        Dosage= document.getElementById("Add_Dosage").value="";
+        Strength= document.getElementById("Add_Strength").value="";
+        Reorder= document.getElementById("Add_ReorderLvL").value="";
+        Description= document.getElementById("Add_Description").value="";
+    }  
+    });
+
+    $("#Search_Btn").click(function(e){
+            e.preventDefault();
+        let Search_input=document.getElementById("Search_input").value;
+        Search_input=Search_input.toLowerCase();
+        if(Search_input==""||Search_input==null){
+            $("#Search_validity").text("Enter in search input");
+        }
+        
+            $("#Medicine_table tbody tr").each(function(){
+            
+                let row_search=$(this).text().toLowerCase();
+                
+                if(row_search.includes(Search_input)){
+                    $(this).show();
+                }
+                else{
+                    $(this).hide();
+                } 
+            });
+
+        });
+    
+
+});
+
+</script>
+
+</body>
+</html>

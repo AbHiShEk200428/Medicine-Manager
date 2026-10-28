@@ -1,0 +1,118 @@
+
+    <h1 id="Menubar_Call">MEDICINE ISSUE </h1>
+    <hr>
+    <br>
+    <form action="issue.html">
+        <div class="Form_sections">
+            <label for="Add_Medicine">Medicine</label> <br>
+            <select name="Medicine" id="Add_Medicine">
+                <option value="None">Select</option>
+                <option value="Paracetamol">Paracetamol</option>
+            </select>
+        </div>
+
+        <div class="Form_sections">
+            <label for="Add_Batch">Batch</label><br>
+            <select name="" id="Add_Batch">
+                <option value="None">--Select Batch--</option>
+                <option value="P001">P001</option>
+            </select>
+        </div>
+        <div class="Form_sections">
+            <label for="Available_Stock">Available Quantity</label>
+            <br>
+            <p id="Available_Stock">[]</p>
+        </div>
+        <div class="Form_sections">
+            <label for="Issue_Quantity">Issue Qty</label>
+            <br>
+            <input type="number" id="Issue_Quantity">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_Customer">Customer</label><br>
+            <input type="text" id="Add_Customer">
+        </div>
+        <div class="Form_sections">
+            <label for="Issue_Date">Issue Date</label><br>
+            <input type="date" id="Issue_Date">
+        </div>
+        <div class="Form_sections">
+            <label for="Add_Remarks">Remarks</label><br>    
+            <input type="text" id="Add_Remarks" >
+        </div>
+        <br>
+        <button id="Issue_Btn">Issue Medicine</button>
+        <p id="Issue_validity"></p>
+    </form>
+
+    <table id="MedIssue_Table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Medicine</th>
+            <th>Batch</th>
+            <th>Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr> 
+            <td>1</td>
+            <td>Paracetamol</td>
+            <td>P001</td>
+            <td>10</td>
+            <td>09-09-2026</td>
+        
+        </tr> 
+    </tbody>
+</table>
+
+<script>
+        $(document).ready(function(){
+        Issue_ID= 2;
+        $("#Issue_Btn").click(function(e){
+        e.preventDefault();
+    let Issue_Medicine=document.getElementById("Add_Medicine").value;
+    let Batch_Input= document.getElementById("Add_Batch").value;
+    let Available_Stock= document.getElementById("Available_Stock").value;
+    let Issue_Quantity= document.getElementById("Issue_Quantity").value;
+    let Customer= document.getElementById("Add_Customer").value;
+    let Issue_Date= document.getElementById("Issue_Date").value;
+    let Remarks= document.getElementById("Add_Remarks").value;
+    var new_row=`
+        <tr>
+        <td>${Issue_ID}</td>
+        <td>${Issue_Medicine}</td> 
+        <td>${Batch_Input}</td>
+        <td>${Issue_Quantity}</td>
+        <td>${Issue_Date}</td>
+        </tr>`;
+    let Issue_Validity=document.getElementById("Issue_validity");
+
+            if(Issue_Medicine=="None"){
+                Issue_Validity.textContent="Select a medicine";
+            }
+            else if(Batch_Input=="None"){
+                Issue_Validity.textContent="Select a batch";
+            }
+            else if(Issue_Quantity==""||Issue_Quantity==null){
+                Issue_Validity.textContent="Enter quantity";
+            }
+            else if(Issue_Date==""||Issue_Date==null){
+                Issue_Validity.textContent="Select date";
+            }
+            else{
+                $("MedIssue_Table tbody").append(new_row);
+
+                document.getElementById("Add_Medicine").value="None";
+                document.getElementById("Add_Batch").value="None"; 
+                document.getElementById("Issue_Quantity").value="";
+                document.getElementById("Add_Customer").value="";
+                document.getElementById("Issue_Date").value="";
+                document.getElementById("Add_Remarks").value="";
+            }
+    });  
+    });
+</script>
+</body>
+</html>

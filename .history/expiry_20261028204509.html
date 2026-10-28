@@ -1,0 +1,49 @@
+<h4 class="mb-3 text-primary">EXPIRY ALERT</h4>
+
+
+    <div class="col-md-3">
+                <label for="inv_category" class="form-label fw-semibold">Status</label>
+                <select id="inv_category" class="form-select focus-ring">
+                    <option value="all">All Categories</option>
+                    <option value="painkillers">Painkillers</option>
+                    <option value="antibiotics">Antibiotics</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="inv_status" class="form-label fw-semibold">Status</label>
+                <select id="inv_status" class="form-select focus-ring">
+                    <option value="all">All Statuses</option>
+                    <option value="in stock">In Stock</option>
+                    <option value="low stock">Low Stock</option>
+                </select>
+            </div>
+
+    <div class="table-responsive">
+        <table id="Inventory_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Remaining Days</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>P001</td>
+                    <td>20-10-2026</td>
+                    <td>20 days</td>
+                    <td><span class="badge bg-success">IN STOCK</span></td>
+                </tr>
+                <tr>
+                    <td>Amoxicillin</td>
+                    <td>A001</td>
+                    <td>10-10-2023</td>
+                    <td>5 days</td>
+                    <td><span class="badge bg-danger">EXPIRING SOON</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

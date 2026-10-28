@@ -38,8 +38,8 @@
     <form action="purchase_management.html" id="Purchase_form">
 
     <div class="Form_sections">
-        <label for="Add_Supplier">Supplier</label><br>
-        <select name="Supplier" id="Add_Supplier" >
+        <label for="Purchase_Supplier">Supplier</label><br>
+        <select name="Supplier" id="Purchase_Supplier" >
             <option value="">-- Select Supplier --</option>
             <option value="ABC Pharma">ABC Pharma</option>
             <option value="MedLife">MedLife</option>
@@ -88,10 +88,10 @@
     <p id="Purchase_Validity"></p>
     </form>
 <br>
-<label for="Search_input">Search</label>  
-<input type="text" id="Search_input">
-<button id="Search_Btn">Search</button>
-<p id="Search_validity"></p>
+<label for="purchase_search_input">Search</label>  
+<input type="text" id="purchase_search_input">
+<button id="purchase_search_btn">Search</button>
+<p id="purchase_search_validity"></p>
 <br>
 
 <table id="Purchase_Table">
@@ -128,7 +128,7 @@
      $("#Add_PurchaseBtn").click(function(event){
         event.preventDefault();
 
-        let Supplier= document.getElementById("Add_Supplier").value; 
+        let Supplier= document.getElementById("Purchase_Supplier").value; 
         let PurchaseDate= document.getElementById("Add_PurchaseDate").value;
         let Medicine= document.getElementById("Add_Medicine").value;
         let Batch= document.getElementById("Add_BatchNum").value;
@@ -182,7 +182,7 @@
             $("#Purchase_Table tbody").append(new_row);
             Purchase_ID++;
 
-            document.getElementById("Add_Supplier").value="";
+            document.getElementById("Purchase_Supplier").value="";
             document.getElementById("Add_PurchaseDate").value="";
             document.getElementById("Add_Medicine").value="";
             document.getElementById("Add_BatchNum").value="";
@@ -197,12 +197,12 @@
 
      });
 
-    $("#Search_Btn").click(function(e){
+    $("#purchase_search_btn").click(function(e){
         e.preventDefault();
-    let Search_input=document.getElementById("Search_input").value;
+    let Search_input=document.getElementById("purchase_search_input").value;
     Search_input=Search_input.toLowerCase().trim();
     if(Search_input==""||Search_input==null){
-        $("#Search_validity").text("Enter in search input");
+        $("#purchase_search_validity").text("Enter in search input");
         }
        
         $("#Purchase_Table tbody tr").each(function(){

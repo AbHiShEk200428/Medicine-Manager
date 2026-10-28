@@ -1,108 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="Sidebar.js"></script>
-        <style>
-        #AddMed_Btn{
-            width: 300px;height: 50px;
-            background-color: pink;
-            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            border-radius: 10px; border: 2px solid; 
-            cursor: pointer;
-        }
-        #AddMed_Btn:hover{
-            border-radius: 10px;
-            background-color: rgb(174, 69, 87);
-            border: 2px solid whitesmoke;
-        }  
-  
-        
-    </style>
-</head>
-<body>
-    <h1 id="Menubar_Call">Medicine</h1>
-<hr>
-    <form action="medicine_management.html" id="medicine_form">
+<div class="container py-3">
+    <div class="card p-4 shadow-sm mb-4">
+        <h4 class="mb-3 text-primary">Add Medicine</h4>
+        <form id="medicine_form">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="Add_Medname" class="form-label fw-semibold">Medicine Name</label>
+                    <input type="text" class="form-control focus-ring" id="Add_Medname" placeholder="e.g. Paracetamol">
+                </div>
+                <div class="col-md-6">
+                    <label for="Add_Genname" class="form-label fw-semibold">Generic Name</label>
+                    <input type="text" class="form-control focus-ring" id="Add_Genname" placeholder="e.g. Acetaminophen">
+                </div>
+                <div class="col-md-4">
+                    <label for="Add_Category" class="form-label fw-semibold">Category</label>
+                    <input type="text" class="form-control focus-ring" id="Add_Category" placeholder="e.g. Painkiller">
+                </div>
+                <div class="col-md-4">
+                    <label for="Add_Manufacturer" class="form-label fw-semibold">Manufacturer</label>
+                    <input type="text" class="form-control focus-ring" id="Add_Manufacturer" placeholder="e.g. Pfizer">
+                </div>
+                <div class="col-md-4">
+                    <label for="Add_Dosage" class="form-label fw-semibold">Dosage Form</label>
+                    <input type="text" class="form-control focus-ring" id="Add_Dosage" placeholder="Tablet, Syrup, etc.">
+                </div>
+                <div class="col-md-6">
+                    <label for="Add_Strength" class="form-label fw-semibold">Strength</label>
+                    <input type="text" class="form-control focus-ring" id="Add_Strength" placeholder="500mg">
+                </div>
+                <div class="col-md-6">
+                    <label for="Add_ReorderLvL" class="form-label fw-semibold">Reorder Level</label>
+                    <input type="number" class="form-control focus-ring" id="Add_ReorderLvL" placeholder="e.g. 50">
+                </div>
+                <div class="col-12">
+                    <label for="Add_Description" class="form-label fw-semibold">Description</label>
+                    <textarea class="form-control focus-ring" id="Add_Description" rows="2" placeholder="Enter medicine description"></textarea>
+                </div>
+            </div>
 
-    <div class="Form_sections">
-        <label for="Add_Medname">Medicine Name</label><br>
-        <input type="text" id="Add_Medname">
-    </div>
+            <p id="Medicine_validity" class="text-danger small mt-2 mb-3 text-center"></p>
 
-    <div class="Form_sections">
-        <label for="Add_Genname">Generic Name</label><br>
-        <input type="text" id="Add_Genname">
-    </div >
-
-    <div class="Form_sections">
-        <label for="Add_Category">Category</label><br>
-        <input type="text" id="Add_Category">
-    </div>
-    
-    <div class="Form_sections">
-        <label for="Add_Manufacturer">Manufacturer</label><br>
-        <input type="text" id="Add_Manufacturer">
-    </div>
-    
-    <div class="Form_sections">
-        <label for="Add_Dosage">Dosage Form</label><br>
-        <input type="text" id="Add_Dosage">
-    </div>
-    
-    <div class="Form_sections">
-        <label for="Add_Strength">Strength</label><br>
-        <input type="text" id="Add_Strength">
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <button type="button" class="btn btn-primary rounded-3 gap-4 btn-lg" id="AddMed_Btn">Add Medicine</button>
+            </div>
+        </form>
     </div>
 
-    <div class="Form_sections">
-        <label for="Add_ReorderLvL">Reorder Level</label><br>
-        <input type="text" id="Add_ReorderLvL">
+    <!-- Search Box -->
+    <div class="input-group mb-4 col-md-6 gap-2">
+        <input type="search" id="med_search_input" class="form-control form-control-lg focus-ring col-md-6" placeholder="Search medicines...">
+        <button id="med_search_btn" class="btn btn-info col-md-4 gap-3">Search</button>
     </div>
-    
-    <div class="Form_sections">
-        <label for="Add_Description">Description</label><br>
-        <input type="text" id="Add_Description">
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table id="Medicine_table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Strength</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Paracetamol</td>
+                    <td>Painkiller</td>
+                    <td>500mg</td>
+                    <td>
+                        <button class="btn btn-sm btn-light border"><img src="images/edit.png" width="16" /></button>
+                        <button class="btn btn-sm btn-light border"><img src="images/trash.png" width="16" /></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-<br>
-    <button id="AddMed_Btn">Add Medicine</button>
-    <p id="Medicine_validity"></p>
-    </form>
-<br>
-<br>
-<label for="Search_input">Search</label>
-<input type="text" id="Search_input">
-<button id="Search_Btn">Search User</button>
-<p id="Search_validity"></p>
-
-<br>
-<table id="Medicine_table">
-    <thead>
-    <tr >
-        <th>ID</th>
-        <th>Medicine</th>
-        <th>Category</th>
-        <th>Strength</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td>01</td>
-        <td>Paracetamol</td>
-        <td>Painkiller</td>
-        <td>500mg</td>
-        <td><button>Edit</button>/ <button>Delete</button></td>
-    </tr>
-    </tbody>
- 
- 
-</table>
-
+</div>
 
 <script>
        
@@ -178,12 +153,12 @@ $(document).ready(function(){
     }  
     });
 
-    $("#Search_Btn").click(function(e){
+    $("#med_search_btn").click(function(e){
             e.preventDefault();
-        let Search_input=document.getElementById("Search_input").value;
+        let Search_input=document.getElementById("med_search_input").value;
         Search_input=Search_input.toLowerCase();
         if(Search_input==""||Search_input==null){
-            $("#Search_validity").text("Enter in search input");
+            $("#med_search_validity").text("Enter in search input");
         }
         
             $("#Medicine_table tbody tr").each(function(){
@@ -204,6 +179,3 @@ $(document).ready(function(){
 });
 
 </script>
-
-</body>
-</html>

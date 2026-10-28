@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodieHub | Online Food Ordering</title>
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+<!-- Google Fonts -->
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=s
+wap" rel="stylesheet">
+<style>
+:root {
+--primary: #e85d04;
+--dark: #202124;
+--light: #fff8f2;
+}
+body {
+font-family: 'Poppins', sans-serif;
+background: #fff;
+color: var(--dark);
+}
+.navbar {
+background: white;
+box-shadow: 0 2px 15px #0000000d;
+}
+.navbar-brand {
+color: var(--primary);
+font-weight: 800;
+font-size: 27px;
+}
+.navbar-brand:hover {
+color: #c94d00;
+}
+
+.hero {
+background: linear-gradient(110deg, #fff0e3, #fff8f2);
+padding: 65px 0;
+}
+.hero h1 {
+font-size: clamp(35px, 5vw, 55px);
+font-weight: 800;
+line-height: 1.2;
+}
+.hero h1 span {
+color: var(--primary);
+}
+.hero img {
+width: 100%;
+max-height: 340px;
+object-fit: cover;
+border-radius: 25px;
+}
+.section-title {
+font-weight: 800;
+}
+.search-box {
+max-width: 500px;
+}
+.category-btn {
+border: 1px solid #eee;
+background: white;
+border-radius: 30px;
+padding: 9px 20px;
+margin: 4px;
+transition: .2s;
+}
+.category-btn:hover,
+.category-btn.active {
+background: var(--primary);
+color: white;
+
+border-color: var(--primary);
+}
+.food-card {
+height: 100%;
+border: none;
+border-radius: 18px;
+overflow: hidden;
+box-shadow: 0 4px 20px #0000000b;
+transition: transform .25s, box-shadow .25s;
+}
+.food-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 28px #00000014;
+}
+.food-image {
+height: 190px;
+width: 100%;
+object-fit: cover;
+}
+.food-price {
+color: var(--primary);
+font-weight: 800;
+font-size: 20px;
+}
+.add-btn,
+.checkout-btn {
+background: var(--primary);
+border-color: var(--primary);
+color: white;
+border-radius: 9px;
+}
+.add-btn:hover,
+.checkout-btn:hover {
+background: #c94d00;
+border-color: #c94d00;
+color: white;
+}
+
+.cart-section {
+background: var(--light);
+border-radius: 20px;
+}
+.cart-item {
+background: white;
+padding: 13px;
+border-radius: 12px;
+margin-bottom: 12px;
+}
+.qty-btn {
+width: 30px;
+height: 30px;
+border: 1px solid #ddd;
+border-radius: 7px;
+background: white;
+}
+.qty-btn:hover {
+background: var(--primary);
+color: white;
+}
+footer {
+background: #202124;
+color: white;
+}
+@media (max-width: 576px) {
+.hero {
+padding: 40px 0;
+}
+.food-image {
+height: 160px;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+<div class="container">
+<a class="navbar-brand" href="#">🍔 FoodieHub</a>
+<button class="navbar-toggler" type="button"
+data-bs-toggle="collapse" data-bs-target="#navMenu"
+aria-controls="navMenu" aria-expanded="false"
+aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav ms-auto align-items-lg-center">
+<li class="nav-item">
+<a class="nav-link" href="#home">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#menu">Our Menu</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#about">About</a>
+</li>
+<li class="nav-item ms-lg-3">
+<a class="btn add-btn" href="#cart">
+🛒 Cart (<span id="cartCount">0</span>)
+</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+<div class="container">
+<div class="row align-items-center g-4">
+<div class="col-lg-6">
+<span class="badge text-bg-warning mb-3">
+Fresh Food, Happy Mood!
+</span>
+<h1>
+Delicious Food<br>
+
+<span>Delivered To You</span>
+</h1>
+<p class="text-secondary mt-3">
+Discover your favourite dishes, order in seconds
+and enjoy delicious food at home.
+</p>
+<a href="#menu" class="btn add-btn btn-lg mt-2">
+Explore Menu →
+</a>
+</div>
+<div class="col-lg-6">
+<img
+src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop
+&w=1000&q=85"
+
+alt="Freshly prepared pizza"
+>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOD MENU -->
+<section class="container py-5" id="menu">
+<div class="text-center mb-4">
+<p class="text-uppercase fw-semibold mb-1" style="color:var(--primary)">
+Explore Our Menu
+</p>
+<h2 class="section-title">Popular Dishes</h2>
+<p class="text-secondary">
+Choose your favourite food and add it to your cart.
+</p>
+</div>
+<!-- SEARCH -->
+<div class="search-box mx-auto mb-4">
+<input type="search" id="searchInput" class="form-control form-control-lg"
+placeholder="🔍 Search pizza, burger, biryani..."
+aria-label="Search food">
+</div>
+
+<!-- CATEGORY FILTER -->
+<div class="text-center mb-4" id="categoryButtons">
+<button class="category-btn active" data-category="All">All</button>
+<button class="category-btn" data-category="Pizza">🍕 Pizza</button>
+<button class="category-btn" data-category="Burger">🍔 Burger</button>
+<button class="category-btn" data-category="Biryani">🍚 Biryani</button>
+<button class="category-btn" data-category="Drinks">🥤 Drinks</button>
+<button class="category-btn" data-category="Dessert">🍰 Dessert</button>
+</div>
+<!-- SORTING -->
+<div class="d-flex justify-content-end align-items-center gap-2 mb-3">
+<label for="sortSelect" class="small">Sort by:</label>
+<select id="sortSelect" class="form-select" style="max-width:200px">
+<option value="default">Recommended</option>
+<option value="low">Price: Low to High</option>
+<option value="high">Price: High to Low</option>
+<option value="rating">Top Rated</option>
+</select>
+</div>
+<div class="row g-4" id="foodContainer"></div>
+<div class="text-center py-5 d-none" id="noResults">
+<h4>No dishes found 😔</h4>
+<p class="text-secondary">Try another food name or category.</p>
+</div>
+</section>
+<!-- SHOPPING CART -->
+<section class="container py-4 mb-5" id="cart">
+<div class="cart-section p-4 p-md-5">
+<div class="row g-4">
+<div class="col-lg-7">
+<h2 class="section-title mb-4">🛒 Your Shopping Cart</h2>
+<div id="cartItems"></div>
+<div id="emptyCart" class="text-secondary py-3">
+Your cart is empty. Add something delicious!
+</div>
+</div>
+<div class="col-lg-5">
+<div class="bg-white p-4 rounded-4">
+<h4 class="fw-bold mb-4">Order Summary</h4>
+
+<div class="d-flex justify-content-between mb-3">
+<span>Subtotal</span>
+<span id="subtotal">₹0.00</span>
+</div>
+<div class="d-flex justify-content-between mb-3">
+<span>Delivery Fee</span>
+<span id="deliveryFee">₹0.00</span>
+</div>
+<div class="d-flex justify-content-between mb-3">
+<span>Tax (5%)</span>
+<span id="tax">₹0.00</span>
+</div>
+<hr>
+<div class="d-flex justify-content-between mb-4">
+<strong>Total</strong>
+<strong class="food-price" id="grandTotal">₹0.00</strong>
+</div>
+<button id="checkoutBtn"
+class="btn checkout-btn w-100 btn-lg">
+Proceed to Checkout
+</button>
+<p class="small text-secondary mt-3 mb-0">
+Demo checkout only. No real payment is processed.
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ABOUT SECTION -->
+<section class="container py-5" id="about">
+<div class="text-center">
+<h2 class="section-title">Why Choose FoodieHub?</h2>
+<div class="row g-4 mt-3">
+<div class="col-md-4">
+<div class="p-4 rounded-4 border h-100">
+
+<div class="fs-1">🥗</div>
+<h5 class="fw-bold mt-2">Fresh Ingredients</h5>
+<p class="text-secondary mb-0">
+Enjoy a menu of delicious, freshly prepared dishes.
+</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="p-4 rounded-4 border h-100">
+<div class="fs-1">⚡</div>
+<h5 class="fw-bold mt-2">Easy Ordering</h5>
+<p class="text-secondary mb-0">
+Search, choose and add dishes to your cart easily.
+</p>
+</div>
+</div>
+<div class="col-md-4">
+<div class="p-4 rounded-4 border h-100">
+<div class="fs-1">💳</div>
+<h5 class="fw-bold mt-2">Clear Pricing</h5>
+<p class="text-secondary mb-0">
+View your subtotal, tax, delivery fee and total.
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CHECKOUT MODAL -->
+<div class="modal fade" id="checkoutModal" tabindex="-1"
+aria-labelledby="checkoutTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<form id="checkoutForm">
+<div class="modal-header">
+<h5 class="modal-title fw-bold" id="checkoutTitle">
+Complete Your Order
+</h5>
+<button type="button" class="btn-close"
+data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+<div class="mb-3">
+<label for="customerName" class="form-label">
+Full Name
+</label>
+<input type="text" id="customerName"
+class="form-control" required maxlength="80">
+</div>
+<div class="mb-3">
+<label for="customerPhone" class="form-label">
+Phone Number
+</label>
+<input type="tel" id="customerPhone"
+class="form-control" required
+pattern="[0-9]{10}" maxlength="10"
+placeholder="10-digit mobile number">
+</div>
+<div class="mb-3">
+<label for="customerAddress" class="form-label">
+Delivery Address
+</label>
+<textarea id="customerAddress" class="form-control"
+rows="3" required maxlength="300"></textarea>
+</div>
+<div class="mb-3">
+<label for="paymentMethod" class="form-label">
+Payment Method
+</label>
+<select id="paymentMethod" class="form-select" required>
+<option value="Cash on Delivery">
+Cash on Delivery
+</option>
+<option value="Demo Online Payment">
+Demo Online Payment
+</option>
+</select>
+</div>
+<div class="alert alert-info small mb-0">
+This demonstration does not submit your information
+
+to a server or process a payment.
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary"
+data-bs-dismiss="modal">Cancel</button>
+<button type="submit" class="btn checkout-btn">
+Place Demo Order
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- ORDER SUCCESS MODAL -->
+<div class="modal fade" id="successModal" tabindex="-1"
+aria-labelledby="successTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content text-center p-4">
+<div class="fs-1">🎉</div>
+<h3 id="successTitle" class="fw-bold">Order Placed!</h3>
+<p class="text-secondary">
+Your demo order has been created successfully.
+</p>
+<p id="orderNumber" class="fw-bold"></p>
+<button class="btn checkout-btn" data-bs-dismiss="modal">
+Continue Shopping
+</button>
+</div>
+</div>
+</div>
+<!-- FOOTER -->
+<footer class="py-4 mt-4">
+<div class="container text-center">
+<h4 class="fw-bold">🍔 FoodieHub</h4>
+<p class="mb-1">Good Food. Good Mood.</p>
+<small class="text-white-50">
+Frontend demonstration built with HTML, CSS, JavaScript,
+jQuery and Bootstrap.
+</small>
+</div>
+
+</footer>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).ready(function () {
+// FOOD DATA
+const foods = [
+{
+id: 1,
+name: "Margherita Pizza",
+category: "Pizza",
+price: 249,
+rating: 4.8,
+emoji: "🍕",
+image:
+"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80",
+description: "Classic cheese pizza with fresh tomato sauce."
+},
+{
+id: 2,
+name: "Chicken Burger",
+category: "Burger",
+price: 179,
+rating: 4.7,
+emoji: "🍔",
+image:
+"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80",
+description: "Juicy chicken patty with fresh vegetables."
+},
+{
+id: 3,
+name: "Chicken Biryani",
+category: "Biryani",
+price: 220,
+rating: 4.9,
+
+emoji: "🍚",
+image:
+"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=700&q=80",
+description: "Aromatic rice served with flavorful chicken."
+},
+{
+id: 4,
+name: "French Fries",
+category: "Burger",
+price: 99,
+rating: 4.4,
+emoji: "🍟",
+image:
+"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=700&q=80",
+description: "Golden crispy fries with a delicious crunch."
+},
+{
+id: 5,
+name: "Chocolate Cake",
+category: "Dessert",
+price: 149,
+rating: 4.8,
+emoji: "🍰",
+image:
+"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80",
+description: "Rich chocolate cake for your sweet cravings."
+},
+{
+id: 6,
+name: "Fresh Lemon Juice",
+category: "Drinks",
+price: 59,
+rating: 4.3,
+emoji: "🥤",
+image:
+"https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=700&q=80",
+description: "Refreshing citrus drink served chilled."
+},
+{
+id: 7,
+
+name: "Pepperoni Pizza",
+category: "Pizza",
+price: 329,
+rating: 4.7,
+emoji: "🍕",
+image:
+"https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=80",
+description: "A tasty pizza topped with cheese and pepperoni."
+},
+{
+id: 8,
+name: "Veg Burger",
+category: "Burger",
+price: 129,
+rating: 4.5,
+emoji: "🍔",
+image:
+"https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=700&q=80",
+description: "Vegetable patty with lettuce and special sauce."
+},
+{
+id: 9,
+name: "Gulab Jamun",
+category: "Dessert",
+price: 79,
+rating: 4.6,
+emoji: "🍮",
+image:
+"https://images.unsplash.com/photo-1666190092159-3a7b6e8a6f6b?auto=format&fit=crop&w=700&q=80",
+description: "A traditional sweet treat to finish your meal."
+},
+{
+id: 10,
+name: "Mutton Biryani",
+category: "Biryani",
+price: 299,
+rating: 4.9,
+emoji: "🍚",
+image:
+"https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=700&q=80",
+
+description: "Flavorful biryani with aromatic spices."
+},
+{
+id: 11,
+name: "Cold Coffee",
+category: "Drinks",
+price: 119,
+rating: 4.5,
+emoji: "🥤",
+image:
+"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80",
+description: "Chilled coffee blended with creamy milk."
+},
+{
+id: 12,
+name: "Vanilla Ice Cream",
+category: "Dessert",
+price: 89,
+rating: 4.4,
+emoji: "🍨",
+image:
+"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=700&q=80",
+description: "Smooth and creamy vanilla ice cream."
+}
+];
+// APP STATE
+let cart = {};
+let selectedCategory = "All";
+const money = value =>
+"₹" + value.toLocaleString("en-IN", {
+minimumFractionDigits: 2,
+maximumFractionDigits: 2
+});
+// SAFE TEXT FOR HTML
+function escapeHTML(value) {
+return String(value).replace(/[&<>"']/g, function (char) {
+return {
+"&": "&amp;",
+"<": "&lt;",
+
+">": "&gt;",
+'"': "&quot;",
+"'": "&#39;"
+}[char];
+});
+}
+// DISPLAY FOOD CARDS
+function renderFoods() {
+const searchText = $("#searchInput").val().trim().toLowerCase();
+const sortType = $("#sortSelect").val();
+let filteredFoods = foods.filter(function (food) {
+const matchesSearch =
+food.name.toLowerCase().includes(searchText) ||
+food.category.toLowerCase().includes(searchText) ||
+food.description.toLowerCase().includes(searchText);
+const matchesCategory =
+selectedCategory === "All" ||
+food.category === selectedCategory;
+return matchesSearch && matchesCategory;
+});
+if (sortType === "low") {
+filteredFoods.sort((a, b) => a.price - b.price);
+} else if (sortType === "high") {
+filteredFoods.sort((a, b) => b.price - a.price);
+} else if (sortType === "rating") {
+filteredFoods.sort((a, b) => b.rating - a.rating);
+}
+const container = $("#foodContainer").empty();
+$("#noResults").toggleClass("d-none", filteredFoods.length !== 0);
+filteredFoods.forEach(function (food) {
+const card = $(`
+<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+<div class="card food-card">
+<img class="food-image"
+src="${escapeHTML(food.image)}"
+alt="${escapeHTML(food.name)}"
+
+loading="lazy">
+<div class="card-body d-flex flex-column">
+<div class="d-flex justify-content-between gap-2">
+<h5 class="fw-bold">${escapeHTML(food.name)}</h5>
+<span class="text-nowrap">⭐ ${food.rating}</span>
+</div>
+<p class="small text-secondary">
+${escapeHTML(food.description)}
+</p>
+<div class="mt-auto d-flex justify-content-between align-items-center">
+<span class="food-price">${money(food.price)}</span>
+<button class="btn add-btn add-to-cart"
+data-id="${food.id}">
++ Add
+</button>
+</div>
+</div>
+</div>
+</div>
+`);
+// Fallback if an external image fails
+card.find("img").on("error", function () {
+$(this).attr(
+"src",
+"https://placehold.co/600x400?text=Food+Image"
+);
+});
+container.append(card);
+});
+}
+// ADD FOOD TO CART
+$("#foodContainer").on("click", ".add-to-cart", function () {
+const id = Number($(this).attr("data-id"));
+const food = foods.find(item => item.id === id);
+if (!food) return;
+if (!cart[id]) {
+cart[id] = { food: food, quantity: 0 };
+}
+
+cart[id].quantity++;
+renderCart();
+// Small visual feedback
+const button = $(this);
+button.text("✓ Added!");
+setTimeout(function () {
+button.text("+ Add");
+}, 700);
+});
+// CHANGE QUANTITY OR REMOVE CART ITEM
+$("#cartItems").on("click", ".qty-btn", function () {
+const id = Number($(this).attr("data-id"));
+const action = $(this).attr("data-action");
+if (!cart[id]) return;
+if (action === "increase") {
+cart[id].quantity++;
+} else if (action === "decrease") {
+cart[id].quantity--;
+if (cart[id].quantity <= 0) {
+delete cart[id];
+}
+}
+renderCart();
+});
+// RENDER CART AND CALCULATE BILL
+function renderCart() {
+const container = $("#cartItems").empty();
+const items = Object.values(cart);
+let itemCount = 0;
+let subtotal = 0;
+items.forEach(function (item) {
+itemCount += item.quantity;
+subtotal += item.food.price * item.quantity;
+
+const row = $(`
+<div class="cart-item d-flex align-items-center justify-content-between gap-3">
+<div class="flex-grow-1">
+<h6 class="fw-bold mb-1">
+${escapeHTML(item.food.name)}
+</h6>
+<span class="text-secondary small">
+${money(item.food.price)} each
+</span>
+<div class="mt-2 d-flex align-items-center gap-2">
+<button class="qty-btn"
+data-action="decrease"
+data-id="${item.food.id}"
+aria-label="Decrease quantity">−</button>
+<span>${item.quantity}</span>
+<button class="qty-btn"
+data-action="increase"
+data-id="${item.food.id}"
+aria-label="Increase quantity">+</button>
+</div>
+</div>
+<strong class="text-nowrap">
+${money(item.food.price * item.quantity)}
+</strong>
+</div>
+`);
+container.append(row);
+});
+const delivery = subtotal === 0 ? 0 : (subtotal >= 499 ? 0 : 40);
+const tax = subtotal * 0.05;
+const total = subtotal + delivery + tax;
+$("#cartCount").text(itemCount);
+$("#emptyCart").toggle(items.length === 0);
+$("#subtotal").text(money(subtotal));
+$("#deliveryFee").text(delivery === 0 && subtotal > 0
+? "FREE" : money(delivery));
+$("#tax").text(money(tax));
+$("#grandTotal").text(money(total));
+$("#checkoutBtn").prop("disabled", items.length === 0);
+}
+
+// CATEGORY FILTER
+$("#categoryButtons").on("click", ".category-btn", function () {
+selectedCategory = $(this).attr("data-category");
+$(".category-btn").removeClass("active");
+$(this).addClass("active");
+renderFoods();
+});
+// LIVE SEARCH
+$("#searchInput").on("input", renderFoods);
+// PRICE AND RATING SORT
+$("#sortSelect").on("change", renderFoods);
+// CHECKOUT BUTTON
+$("#checkoutBtn").on("click", function () {
+if (Object.keys(cart).length === 0) {
+alert("Please add food to your cart first.");
+return;
+}
+bootstrap.Modal.getOrCreateInstance(
+document.getElementById("checkoutModal")
+).show();
+});
+// PLACE DEMO ORDER
+$("#checkoutForm").on("submit", function (event) {
+event.preventDefault();
+if (Object.keys(cart).length === 0) {
+alert("Your cart is empty.");
+return;
+}
+const name = $("#customerName").val().trim();
+const phone = $("#customerPhone").val().trim();
+const address = $("#customerAddress").val().trim();
+if (!name || !phone || !address) {
+alert("Please complete all required fields.");
+
+return;
+}
+const orderId = "FH" + Date.now().toString().slice(-8);
+// This is a demonstration, not a real server order
+bootstrap.Modal.getOrCreateInstance(
+document.getElementById("checkoutModal")
+).hide();
+$("#orderNumber").text("Demo Order ID: " + orderId);
+bootstrap.Modal.getOrCreateInstance(
+document.getElementById("successModal")
+).show();
+// Clear cart after successful demo submission
+cart = {};
+renderCart();
+$("#checkoutForm")[0].reset();
+});
+// INITIALIZE WEBSITE
+renderFoods();
+renderCart();
+});
+</script>
+</body>
+</html>

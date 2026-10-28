@@ -1,53 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <label for="">Date</label>
-    <input type="date" id="Search_date">
+<div class="container py-3">
+    <!-- Filter Card -->
+    <div class="card p-3 mb-4 shadow-sm">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="trans_date" class="form-label fw-semibold">Date</label>
+                <input type="date" id="trans_date" class="form-control focus-ring">
+            </div>
+            <div class="col-md-3">
+                <label for="trans_type" class="form-label fw-semibold">Type</label>
+                <select id="trans_type" class="form-select focus-ring">
+                    <option value="all">All Types</option>
+                    <option value="issue">Issue</option>
+                    <option value="return">Return</option>
+                    <option value="purchase">Purchase</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="trans_med" class="form-label fw-semibold">Medicine</label>
+                <select id="trans_med" class="form-select focus-ring">
+                    <option value="all">All Medicines</option>
+                    <option value="paracetamol">Paracetamol</option>
+                    <option value="cetirizine">Cetirizine</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="trans_filter_btn" class="btn btn-info w-100">Filter</button>
+            </div>
+        </div>
+    </div>
 
-    <label for="">Type</label>
-    <select name="" id="">
-        <option value="">==Select==</option>
-        <option value="">Issue</option>
-        <option value="">Return</option>
-        <option value="">Purchase</option>
-       </select>
-
-       <br>
-
-    <label for="">Medicine</label>
-       <select name="" id="">
-        <option value="">==Select==</option>
-        <option value="">Paracetamol</option>
-        <option value="">Cetrizine</option>
-       </select> 
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Medicine</th>
-            <th>Batch</th>
-            <th>Type</th>
-            <th>Quantity</th>
-            <th>Date/Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Paracetamol</td>
-            <td>P001</td>
-            <td>PURCHASE</td>
-
-
-
-        </tr>
-    </tbody>
-</table>
-</body>
-</html>
+    <!-- Table -->
+    <div class="table-responsive">
+        <table id="Transactions_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Date / Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Paracetamol</td>
+                    <td>P001</td>
+                    <td><span class="badge bg-primary">PURCHASE</span></td>
+                    <td>50</td>
+                    <td>2026-10-28 14:30</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

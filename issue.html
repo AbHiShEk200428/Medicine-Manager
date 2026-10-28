@@ -1,118 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <link rel="stylesheet" href="style.css">
-    <script src="Sidebar.js"></script>
-        <style>
-        #Issue_Btn{
-            width: 300px;height: 50px;
-            background-color: pink;
-            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            border-radius: 10px; border: 2px solid; 
-            cursor: pointer;
-        }
-        #Issue_Btn:hover{
-            border-radius: 10px;
-            background-color: rgb(174, 69, 87);
-            border: 2px solid whitesmoke;
-        }  
-        #Add_Remarks{
-            width: 200px;height: 150px;
-        }
-  
-        
-    </style>
-</head>
-<header>
-<h1>PHARMA MANAGER</h1>
-<hr>
-</header>
-<body>
-    <h1 id="Menubar_Call">MEDICINE ISSUE </h1>
-    <hr>
-    <br>
-    <form action="issue.html">
-        <div class="Form_sections">
-            <label for="Add_Medicine">Medicine</label> <br>
-            <select name="Medicine" id="Add_Medicine">
-                <option value="None">Select</option>
-                <option value="Paracetamol">Paracetamol</option>
-            </select>
-        </div>
+<div class="container py-3">
+    <div class="card p-4 shadow-sm mb-4">
+        <h4 class="mb-3 text-primary">Medicine Issue</h4>
+        <form id="issue_form">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="Issue_Medicine" class="form-label fw-semibold">Medicine</label>
+                    <select id="Issue_Medicine" class="form-select focus-ring">
+                        <option value="None">Select Medicine</option>
+                        <option value="Paracetamol">Paracetamol</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Batch" class="form-label fw-semibold">Batch</label>
+                    <select id="Issue_Batch" class="form-select focus-ring">
+                        <option value="None">Select Batch</option>
+                        <option value="P001">P001</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Available Stock</label>
+                    <input type="text" id="Available_Stock_Val" class="form-control focus-ring" readonly value="100">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Quantity" class="form-label fw-semibold">Issue Quantity</label>
+                    <input type="number" id="Issue_Quantity" class="form-control focus-ring" placeholder="Enter quantity">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Customer" class="form-label fw-semibold">Customer</label>
+                    <input type="text" id="Issue_Customer" class="form-control focus-ring" placeholder="Customer name">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Date" class="form-label fw-semibold">Issue Date</label>
+                    <input type="date" id="Issue_Date" class="form-control focus-ring">
+                </div>
+                <div class="col-12">
+                    <label for="Issue_Remarks" class="form-label fw-semibold">Remarks</label>
+                    <input type="text" id="Issue_Remarks" class="form-control focus-ring" placeholder="Optional notes">
+                </div>
+            </div>
 
-        <div class="Form_sections">
-            <label for="Add_Batch">Batch</label><br>
-            <select name="" id="Add_Batch">
-                <option value="None">--Select Batch--</option>
-                <option value="P001">P001</option>
-            </select>
-        </div>
-        <div class="Form_sections">
-            <label for="Available_Stock">Available Quantity</label>
-            <br>
-            <p id="Available_Stock">[]</p>
-        </div>
-        <div class="Form_sections">
-            <label for="Issue_Quantity">Issue Qty</label>
-            <br>
-            <input type="number" id="Issue_Quantity">
-        </div>
-        <div class="Form_sections">
-            <label for="Add_Customer">Customer</label><br>
-            <input type="text" id="Add_Customer">
-        </div>
-        <div class="Form_sections">
-            <label for="Issue_Date">Issue Date</label><br>
-            <input type="date" id="Issue_Date">
-        </div>
-        <div class="Form_sections">
-            <label for="Add_Remarks">Remarks</label><br>    
-            <input type="text" id="Add_Remarks" >
-        </div>
-        <br>
-        <button id="Issue_Btn">Issue Medicine</button>
-        <p id="Issue_validity"></p>
-    </form>
+            <p id="Issue_validity" class="text-danger small mt-2 mb-3 text-center"></p>
 
-    <table id="MedIssue_Table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Medicine</th>
-            <th>Batch</th>
-            <th>Quantity</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr> 
-            <td>1</td>
-            <td>Paracetamol</td>
-            <td>P001</td>
-            <td>10</td>
-            <td>09-09-2026</td>
-        
-        </tr> 
-    </tbody>
-</table>
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <button type="button" class="btn btn-primary rounded-pill" id="Issue_Btn">Issue Medicine</button>
+            </div>
+        </form>
+    </div>
 
+    <!-- Table -->
+    <div class="table-responsive">
+        <table id="MedIssue_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Paracetamol</td>
+                    <td>P001</td>
+                    <td>10</td>
+                    <td>Jane Doe</td>
+                    <td>09-09-2026</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <script>
         $(document).ready(function(){
         Issue_ID= 2;
         $("#Issue_Btn").click(function(e){
         e.preventDefault();
-    let Issue_Medicine=document.getElementById("Add_Medicine").value;
-    let Batch_Input= document.getElementById("Add_Batch").value;
-    let Available_Stock= document.getElementById("Available_Stock").value;
+    let Issue_Medicine=document.getElementById("Issue_Medicine").value;
+    let Batch_Input= document.getElementById("Issue_Batch").value;
+    let Available_Stock= document.getElementById("Available_Stock_Val").value;
     let Issue_Quantity= document.getElementById("Issue_Quantity").value;
-    let Customer= document.getElementById("Add_Customer").value;
+    let Customer= document.getElementById("Issue_Customer").value;
     let Issue_Date= document.getElementById("Issue_Date").value;
-    let Remarks= document.getElementById("Add_Remarks").value;
+    let Remarks= document.getElementById("Issue_Remarks").value;
     var new_row=`
         <tr>
         <td>${Issue_ID}</td>
@@ -136,17 +108,15 @@
                 Issue_Validity.textContent="Select date";
             }
             else{
-                $("MedIssue_Table tbody").append(new_row);
+                $("#MedIssue_Table tbody").append(new_row);
 
-                document.getElementById("Add_Medicine").value="None";
-                document.getElementById("Add_Batch").value="None"; 
+                document.getElementById("Issue_Medicine").value="None";
+                document.getElementById("Issue_Batch").value="None"; 
                 document.getElementById("Issue_Quantity").value="";
-                document.getElementById("Add_Customer").value="";
+                document.getElementById("Issue_Customer").value="";
                 document.getElementById("Issue_Date").value="";
-                document.getElementById("Add_Remarks").value="";
+                document.getElementById("Issue_Remarks").value="";
             }
     });  
     });
 </script>
-</body>
-</html>
