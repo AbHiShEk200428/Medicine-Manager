@@ -7,90 +7,77 @@
     <title>Document</title>
 <link rel="stylesheet" href="style.css">
     <script src="Sidebar.js"></script>
-        <style>
-        #Add_SupplierBtn{
-            width: 300px;height: 50px;
-            background-color: pink;
-            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            border-radius: 10px; border: 2px solid; 
-            cursor: pointer;
-        }
-        #Add_SupplierBtn:hover{
-            border-radius: 10px;
-            background-color: rgb(174, 69, 87);
-            border: 2px solid whitesmoke;
-        }  
-  
-        
-    </style>
 </head>
 <body>
-    <h1 id="Menubar_Call">Suppliers</h1>
-    <hr>
-    <form action="supplier_management.html" id="Supplier_form">
-        <div class="Form_sections">
-            <label for="Supplier_Name">Supplier Name</label><br>
-            <input type="text" id="Supplier_Name">
-        </div>
-        <div class="Form_sections">
-            <label for="Add_Contact">Contact Person</label><br>
-            <input type="text" id="Add_Contact">
-        </div>
-        <div class="Form_sections">
-            <label for="Add_Phone">Phone</label><br>
-            <input type="number" id="Add_Phone">
-        </div>
-        <div class="Form_sections">
-            <label for="Supplier_Email">Email</label><br>
-            <input type="email" id="Supplier_Email">
-        </div>
-        <div class="Form_sections">
-            <label for="Add_Address">Address</label><br>
-            <input type="text" id="Add_Address">
-        </div>
-        <div class="Form_sections">
-            <label for="Add_GST">GST Number</label><br>
-            <input type="text" id="Add_GST">
-        </div>
-<br>
-        <button type="button" id="Add_SupplierBtn">Add Supplier</button>
-        <p id="Supplier_Validity"></p>
-    </form>
+    <div class="container py-3">
+        <h1 id="Menubar_Call" class="h4 mb-3 text-primary">Suppliers</h1>
+        <div class="card p-4 shadow-sm mb-4">
+            <form action="supplier_management.html" id="Supplier_form">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="Supplier_Name" class="form-label fw-semibold">Supplier Name</label>
+                        <input type="text" class="form-control focus-ring" id="Supplier_Name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Add_Contact" class="form-label fw-semibold">Contact Person</label>
+                        <input type="text" class="form-control focus-ring" id="Add_Contact">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Add_Phone" class="form-label fw-semibold">Phone</label>
+                        <input type="number" class="form-control focus-ring" id="Add_Phone">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Supplier_Email" class="form-label fw-semibold">Email</label>
+                        <input type="email" class="form-control focus-ring" id="Supplier_Email">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Add_Address" class="form-label fw-semibold">Address</label>
+                        <input type="text" class="form-control focus-ring" id="Add_Address">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="Add_GST" class="form-label fw-semibold">GST Number</label>
+                        <input type="text" class="form-control focus-ring" id="Add_GST">
+                    </div>
+                </div>
 
-    
-    <br>
-    <div style="text-align: left;">
-    <label for="supplier_search_input">Search</label>  
-    <input type="text" id="supplier_search_input">
-    <button id="supplier_search_btn">Search</button>
-    <p id="supplier_search_validity"></p>   
+                <p id="Supplier_Validity" class="text-danger small mt-2 mb-3 text-center"></p>
+
+                <div class="d-grid gap-2 col-md-6 mx-auto">
+                    <button type="button" class="btn btn-primary rounded-3 btn-lg" id="Add_SupplierBtn">Add Supplier</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="supplier_search_input" class="visually-hidden">Search suppliers</label>
+            <input type="text" id="supplier_search_input" class="form-control form-control-lg focus-ring" placeholder="Search suppliers..." aria-label="Search suppliers">
+            <button type="button" id="supplier_search_btn" class="btn btn-info">Search</button>
+        </div>
+        <p id="supplier_search_validity" class="text-danger small mb-3"></p>
+
+        <div class="table-responsive">
+            <table id="Supplier_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Supplier</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>ABC Pharma</td>
+                        <td>Anil</td>
+                        <td>14343114</td>
+                        <td><button class="btn btn-sm btn-light border Purchase_Edit">Edit</button> / <button class="btn btn-sm btn-light border Purchase_Delete">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
-    <br>
-
-    <table id="Supplier_Table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Supplier</th>
-                <th>Contact</th>
-                <th>Phone</th>
-                <td>Actions</td>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>ABC Pharma</td>
-                <td>Anil</td>
-                <td>14343114</td>
-                <td><button class="Purchase_Edit">Edit</button> / <button class="Purchase_Delete">Delete</button></td>
-
-
-            </tr>
-        </tbody>
-    </table>
 
 <script>
     $(document).ready(function(){

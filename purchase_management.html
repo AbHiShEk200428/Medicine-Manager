@@ -1,126 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
-     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<div class="container py-3">
+    <div class="card p-4 shadow-sm mb-4">
+        <h4 class="mb-3 text-primary">Add Purchase</h4>
 
-    
+        <form class="row gy-2 gx-3 align-items-centre">
+          <div class="row"  >
+                <div class="col">
+                    <label for="Purchase_Supplier" class="col-sm-2 col-form-label">Role</label>
+                              <select class="form-select form-control focus-ring form-control focus-ring" id="Purchase_Supplier">
+                                  <option value="None">==Select Supplier==</option>
+                                  <option value="ABC Pharma">ABC Pharma</option>
+                                  <option value="XYZ Pharmaceuticals">XYZ Pharmaceuticals</option>
+                                  <option value="123 Meds">123 Meds</option>
+                              </select>
+                </div>
+                <div class="col">
+                          <label for="Add_PurchaseDate" class="col-sm-2 col-form-label">PurchaseDate</label>
+                          <input type="date" class="form-control form-control focus-ring" id="Add_PurchaseDate" placeholder="Enter purchase date">
+                      </div>
+          </div>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="Sidebar.js"></script>
-    <style>
-        #Add_PurchaseBtn{
-            width: 300px;height: 50px;
-            background-color: pink;
-            font-size: 1.5em;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            border-radius: 10px; border: 2px solid; 
-            cursor: pointer;
-        }
-        #Add_PurchaseBtn:hover{
-            border-radius: 10px;
-            background-color: rgb(174, 69, 87);
-            border: 2px solid whitesmoke;
-        }  
-        #Add_Remarks{
-            height: 150px;width: 300px;
-        }
-  
-        
-    </style>
-</head>
-<body>
-    <h1 id="Menubar_Call">Purchase Management</h1>
-    <br>
-    <hr>
-    <form action="purchase_management.html" id="Purchase_form">
+          <div class="row">
+              <div class="col">
+                  <label for="Add_Medicine" class="col-sm-2 col-form-label">Medicine</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_Medicine" placeholder="Enter medicine name">
+              </div>
+              <div class="col">
+                  <label for="Add_BatchNum" class="col-sm-2 col-form-label">Batch Number</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_BatchNum" placeholder="Enter Batch number">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="Add_Manufacture" class="col-sm-2 col-form-label">Manufacturer</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_Manufacture" placeholder="Enter manufacturer name">
+              </div>
+              <div class="col">
+                  <label for="Add_ExpiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
+                  <input type="date" class="form-control form-control focus-ring" id="Add_ExpiryDate" placeholder="Enter expiry date">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="Add_Quantity" class="col-sm-2 col-form-label">Quantity</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_Quantity" placeholder="Enter quantity">
+              </div>
+              <div class="col">
+                  <label for="Add_PurchasePrice" class="col-sm-2 col-form-label">Purchase Price</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_PurchasePrice" placeholder="Enter purchase price">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <label for="Add_SellingPrice" class="col-sm-2 col-form-label">Selling Price</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_SellingPrice" placeholder="Enter selling price">
+              </div>
+              <div class="col">
+                  <label for="Add_Remarks" class="col-sm-2 col-form-label">Remarks</label>
+                  <input type="text" class="form-control form-control focus-ring" id="Add_Remarks" placeholder="Enter remarks">
+              </div>
+              
+          </div>
 
-    <div class="Form_sections">
-        <label for="Purchase_Supplier">Supplier</label><br>
-        <select name="Supplier" id="Purchase_Supplier" >
-            <option value="">-- Select Supplier --</option>
-            <option value="ABC Pharma">ABC Pharma</option>
-            <option value="MedLife">MedLife</option>
-        </select>
-    </div> 
-    <div class="Form_sections">
-        <label for="Add_PurchaseDate">Purchase date</label><br>
-        <input type="date" id="Add_PurchaseDate">
-    </div>
-    <div class="Form_sections">
-        <label for="Add_Medicine">Medicine</label><br>
-        <input type="text" id="Add_Medicine">
-    </div>
-    <div class="Form_sections">
-        <label for="Add_BatchNum">Batch Number</label><br>
-        <input type="text" id="Add_BatchNum">
-    </div>
-    <div class="Form_sections">
-        <label for="Add_Manufacture">Manufacturing</label><br>
-        <input type="text" id="Add_Manufacture">
-    </div>
-    
-    <div class="Form_sections">
-        <label for="Add_ExpiryDate">Expiry Date</label><br>
-        <input type="date" id="Add_ExpiryDate">
-    </div>
-    <div class="Form_sections">
-        <label for="Add_Quantity">Quantity</label><br>
-        <input type="number" min="1" id="Add_Quantity">
-    </div>
-    <div class="Form_sections">
-        <label for="Add_PurchasePrice">Purchase Price</label><br>
-        <input type="number" id="Add_PurchasePrice">
-    </div>
-    <div class="Form_sections">
-        <label for="Add_SellingPrice">Selling Price</label><br>
-        <input type="number" id="Add_SellingPrice">
-    </div>
-    <div class="Form_sections" >
-        <label for="Add_Remarks">Remarks</label><br>
-        <input type="text" id="Add_Remarks">
+            
+              <p id="Purchase_Validity" class="text-danger small mt-2 mb-3 text-center"></p>
+
+              <div class="d-grid gap-2 col-md-6 mx-auto">
+                  <button type="button" class="btn btn-primary rounded-3 gap-4 btn-lg" id="Add_PurchaseBtn">Add Purchase</button>
+              </div>
+          </form>
+
     </div>
 
-    <br>
-    <button id="Add_PurchaseBtn">Add Purchase</button>
-    <p id="Purchase_Validity"></p>
-    </form>
-<br>
-<label for="purchase_search_input">Search</label>  
-<input type="text" id="purchase_search_input">
-<button id="purchase_search_btn">Search</button>
-<p id="purchase_search_validity"></p>
-<br>
+       <div class="input-group mb-4 col-md-6 gap-2">
+        <input type="search" id="purchase_search_input" class="form-control form-control-lg focus-ring col-md-6" placeholder="Search purchases...">
+        <button id="purchase_search_btn" class="btn btn-info col-md-4 gap-3">Search</button>
+    </div>
 
-<table id="Purchase_Table">
-    <thead>
-        <tr>
-        <th>ID</th>
-        <th>Supplier</th>
-        <th>Medicine</th>
-        <th>Batch</th>
-        <th>Quantity</th>
-        <th>Expiry Date</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
- 
-    <tr>
-        <td>1</td>
-        <td>ABC</td>
-        <td>Paracetamol</td>
-        <td>P001</td>
-        <td>100</td>
-        <td>09-09-26</td>
-        <td><button class="Purchase_Edit">Edit</button> / <button class="Purchase_Delete">Delete</button></td>
-    </tr>
-    
-    </tbody>
-    
-</table>
+        <div class="table-responsive">
+        <table id="Purchase_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>ABC</td>
+                    <td>Paracetamol</td>
+                    <td>P001</td>
+                    <td>100</td>
+                    <td>09-09-26</td>
+                    <td>
+                        <button class="btn btn-sm btn-light border"><img src="images/edit.png" width="16" /></button>
+                        <button class="btn btn-sm btn-light border"><img src="images/trash.png" width="16" /></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <script>
     $(document).ready(function(){
