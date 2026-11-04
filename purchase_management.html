@@ -1,10 +1,10 @@
 <div class="container py-3">
     <div class="card p-4 shadow-sm mb-4">
+        
         <h4 class="mb-3 text-primary">Add Purchase</h4>
-
-        <form class="row gy-2 gx-3 align-items-centre">
-          <div class="row"  >
-                <div class="col">
+        <form id="purchase_form">
+          <div class="row g-3"  >
+                <div class="col-md-6">
                     <label for="Purchase_Supplier" class="col-sm-2 col-form-label">Role</label>
                               <select class="form-select form-control focus-ring form-control focus-ring" id="Purchase_Supplier">
                                   <option value="None">==Select Supplier==</option>
@@ -13,53 +13,52 @@
                                   <option value="123 Meds">123 Meds</option>
                               </select>
                 </div>
-                <div class="col">
-                          <label for="Add_PurchaseDate" class="col-sm-2 col-form-label">PurchaseDate</label>
+                <div class="col-md-6">
+                          <label for="Add_PurchaseDate" class="form-label fw-semibold">PurchaseDate</label>
                           <input type="date" class="form-control form-control focus-ring" id="Add_PurchaseDate" placeholder="Enter purchase date">
                       </div>
-          </div>
 
-          <div class="row">
-              <div class="col">
-                  <label for="Add_Medicine" class="col-sm-2 col-form-label">Medicine</label>
+                      
+              <div class="col-md-6">
+                  <label for="Add_Medicine" class="form-label fw-semibold">Medicine</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_Medicine" placeholder="Enter medicine name">
               </div>
-              <div class="col">
-                  <label for="Add_BatchNum" class="col-sm-2 col-form-label">Batch Number</label>
+              <div class="col-md-6">
+                  <label for="Add_BatchNum" class="form-label fw-semibold">Batch Number</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_BatchNum" placeholder="Enter Batch number">
               </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <label for="Add_Manufacture" class="col-sm-2 col-form-label">Manufacturer</label>
+         
+              <div class="col-md-6">
+                  <label for="Add_Manufacture" class="form-label fw-semibold">Manufacturer</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_Manufacture" placeholder="Enter manufacturer name">
               </div>
-              <div class="col">
-                  <label for="Add_ExpiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
+              <div class="col-md-6">
+                  <label for="Add_ExpiryDate" class="form-label fw-semibold">Expiry Date</label>
                   <input type="date" class="form-control form-control focus-ring" id="Add_ExpiryDate" placeholder="Enter expiry date">
               </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <label for="Add_Quantity" class="col-sm-2 col-form-label">Quantity</label>
+         
+              <div class="col-md-6">
+                  <label for="Add_Quantity" class="form-label fw-semibold">Quantity</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_Quantity" placeholder="Enter quantity">
               </div>
-              <div class="col">
-                  <label for="Add_PurchasePrice" class="col-sm-2 col-form-label">Purchase Price</label>
+              <div class="col-md-6">
+                  <label for="Add_PurchasePrice" class="form-label fw-semibold">Purchase Price</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_PurchasePrice" placeholder="Enter purchase price">
               </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <label for="Add_SellingPrice" class="col-sm-2 col-form-label">Selling Price</label>
+         
+              <div class="col-md-6">
+                  <label for="Add_SellingPrice" class="form-label fw-semibold">Selling Price</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_SellingPrice" placeholder="Enter selling price">
               </div>
-              <div class="col">
-                  <label for="Add_Remarks" class="col-sm-2 col-form-label">Remarks</label>
+              <div class="col-md-6">
+                  <label for="Add_Remarks" class="form-label fw-semibold">Remarks</label>
                   <input type="text" class="form-control form-control focus-ring" id="Add_Remarks" placeholder="Enter remarks">
               </div>
               
           </div>
+
+         
+       
 
             
               <p id="Purchase_Validity" class="text-danger small mt-2 mb-3 text-center"></p>

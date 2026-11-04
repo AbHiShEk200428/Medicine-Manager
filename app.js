@@ -51,7 +51,8 @@ $(document).ready(function(){
         console.error(`Cannot clear tab state: target pane "${targetPaneSelector}" was not found.`);
       }
     });
-  }
+  
+  };
 
   function switchZone(zoneName) {
     if (zoneName === activeZone) {
@@ -91,17 +92,20 @@ $(document).ready(function(){
       switchZone(zoneName);
     });
   });
-});
 
-// Load default tab (Dashboard) on page load
-window.addEventListener('DOMContentLoaded', () => {
-    const defaultTab = document.querySelector('#Dashboardtab_Btn');
-    if (defaultTab) {
-        loadTabContent(defaultTab);
-    } else {
-        console.warn('Default tab #Dashboardtab_Btn not found.');
-    }
-});
+  $("#ZoneBarBtn").on("click", function() {
+    $("#ZoneBarContent").slideToggle(100);
+  });
+
+
+
+// jQuery ready has already waited for the document, so load the initial pane directly.
+const defaultTab = document.querySelector('#Dashboardtab_Btn');
+if (defaultTab) {
+    loadTabContent(defaultTab);
+} else {
+    console.warn('Default tab #Dashboardtab_Btn not found.');
+}
 
 // FIX: query ALL tab buttons across all three zone groups (not just #Home_tabs)
 const triggerTabList = document.querySelectorAll('button[data-bs-toggle="tab"]');
@@ -128,3 +132,4 @@ function loadTabContent(tabButton) {
         }
     });
 }
+});
