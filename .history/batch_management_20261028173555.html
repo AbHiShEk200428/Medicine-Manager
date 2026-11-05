@@ -1,0 +1,93 @@
+<div class="container py-3">
+    <!-- Filter Bar -->
+    <div class="card p-3 mb-4 shadow-sm">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="batch_search_input" class="form-label fw-semibold">Search</label>
+                <input type="search" id="batch_search_input" class="form-control focus-ring" placeholder="Search batch or medicine...">
+            </div>
+            <div class="col-md-3">
+                <label for="batch_select_medicine" class="form-label fw-semibold">Medicine</label>
+                <select id="batch_select_medicine" class="form-select focus-ring">
+                    <option value="all">All Medicines</option>
+                    <option value="paracetamol">Paracetamol</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="batch_select_expiry" class="form-label fw-semibold">Expiry Status</label>
+                <select id="batch_select_expiry" class="form-select focus-ring">
+                    <option value="all">All</option>
+                    <option value="normal">Normal</option>
+                    <option value="near_expiry">Near Expiry</option>
+                    <option value="expired">Expired</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="batch_search_btn" class="btn btn-info w-100">Filter</button>
+            </div>
+        </div>
+        <p id="batch_search_validity" class="text-danger small mt-2 mb-0"></p>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table id="Batch_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Mfg Date</th>
+                    <th scope="col">Expiry</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Paracetamol</td>
+                    <td>P001</td>
+                    <td>01-03-2026</td>
+                    <td>01-01-2028</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#batch_search_btn").click(function(e){
+        e.preventDefault();
+    let Search_input=document.getElementById("Search_input").value;
+    let Medicine_input= document.getElementById("Select_Medicine").value;
+    let Expiry_Status= document.getElementById("Select_Expiry").value;
+
+    Search_input=Search_input.toLowerCase().trim();
+    Medicine_input=Medicine_input.toLowerCase().trim();
+    if(Search_input==""||Search_input==null){
+        $("#Search_validity").text("Enter search input");
+        }
+    else if(Medicine_input=="None"||Medicine_input==null){
+            $("#Search_validity").text("Select a medicine")
+        }
+    else if(Expiry_Status="None"){
+        $("#Search_validity").text("Select expiry status")
+    }
+       
+        $("#Batch_Table tbody tr").each(function(){
+        
+            let row_search=$(this).text().toLowerCase();
+            
+            if(row_search.includes(Search_input||Medicine_input)){
+                $(this).show();
+            }
+            else{
+                $(this).hide();
+            } 
+        });
+
+    });  
+    });
+</script>

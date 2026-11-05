@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet" integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
+
+    <style>
+     body{
+        padding: 20px;
+     }
+     #Add_user{
+        padding: 10px 20px;
+        
+     }
+    </style>
+</head>
+<body>
+  
+<div class="container">
+        <form class="row gy-2 gx-3 align-items-center">
+
+        <div class="row">
+            <div class="col">
+                <label for="username" class="col-sm-2 col-form-label" id="fullname-label">Fullname</label>
+                <input type="text" class="form-control" id="Add_Fullname" placeholder="Enter fullname">
+            </div>
+            <div class="col">
+                <label for="username" class="col-sm-2 col-form-label">Username</label>
+                <input type="text" class="form-control" id="Add_Username" placeholder="Enter username">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <input type="email" class="form-control" id="Add_Email" placeholder="Enter email">
+            </div>
+            <div class="col">
+                <label for="role" class="col-sm-2 col-form-label">Role</label>
+                <select class="form-select" id="Add_Role">
+                    <option value="none">Select role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="supplier">Supplier</option>
+                </select>
+            </div>
+
+        </div>
+
+        <p class="invalid-feedback" id="User_validity">This field is required.</p>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="button" class="btn btn-primary rounded-pill" id="Add_user">Add User</button>
+        </div>
+        
+        <div class="toast-container position-fixed bottom-0 start-0 p-6">
+        <div class="toast text-bg-success" id="AddUser_Toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+            <div class="d-flex gap-4">
+                <span><i class="fa-solid fa-circle-check fa-lg icon-success"></i></span>
+                <div class="d-flex flex-column flex-grow-1 gap-2">
+                <div class="d-flex align-items-center">
+                    <span class="fw-semibold">User was added successfully!</span>
+                    <button type="button" class="btn-close btn-close-white btn-close-sm ms-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+                </div>
+                <span>I will auto dismiss after 8 seconds.</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </form>
+</div>
+
+<div class="table-container justify-content-center col-9 position-absolute top-50 start-50 translate-middle" style="margin-top: 20px;">
+    <table id="User_table" class="table table-hover text-center text-nowrap table-bordered ">
+    <thead class="table-dark">
+        <tr >
+        <th scope="col">ID</th>
+        <th scope="col">Fullname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Role</th> 
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody  >
+        <tr class="table-secondary">
+            <td scope="row">1</td>
+            <td>John Doe</td>
+            <td>johndoe</td>
+            <td><b>Admin</b></td>
+            <td>
+                <button>
+                    <a class="icon-link" href="#">
+                    <img src="path/to/icon.png" class="bi" />
+                    Icon link
+                    </a>
+                </button> / <button>
+                    C:\Users\Abhishek V.S\Desktop\IPCS\Project\Medicine-Manager\images\edit.png
+                </button></td>
+        </tr>
+</table>
+
+</div>
+
+<script>
+       
+$(document).ready(function(){
+    let User_ID=2;
+$("#Add_user").click(function(e){
+    e.preventDefault();
+  
+    let Fullname= document.getElementById("Add_Fullname").value;
+    let Username=document.getElementById("Add_Username").value;
+    let Email= document.getElementById("Add_Email").value;
+    let Role= document.getElementById("Add_Role").value;
+    var new_row=`
+        <tr class="table-secondary">
+        <td scope="row">${User_ID}</td>
+        <td>${Fullname}</td>
+        <td>${Username}</td> 
+        <td><b>${Role}</b></td>
+        <td><button>Edit</button> / <button>Delete</button></td>
+        </tr>`;
+
+    let User_validity=document.getElementById("User_validity");
+    let Email_validity=Email.includes("@gmail.com");
+        if(Fullname==""||Fullname==null){
+            User_validity.textContent="Fullname cant be empty";
+        }
+        else if(Username==""||Username==null){
+            User_validity.textContent="Username field cant be empty";
+        }
+
+        else if(Email==""||Email==null){
+            User_validity.textContent="Email is required";
+
+        }
+        else if(Role=="none"){
+            User_validity.textContent="Select a role.";
+        }
+        else if(!Email_validity){
+                User_validity.textContent="Enter an valid email only";
+        }
+
+        else{
+            $("#User_table tbody").append(new_row);//Add new table row
+            User_ID++; //Increment ID
+            const toast = new bootstrap.Toast(toastLiveExample);
+            toast.show();
+
+
+            //Reset input field=
+            document.getElementById("Add_Fullname").value="";
+            Username=document.getElementById("Add_Username").value="";
+            Email= document.getElementById("Add_Email").value="";
+            Role= document.getElementById("Add_Role").value="None";
+        }  
+        });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

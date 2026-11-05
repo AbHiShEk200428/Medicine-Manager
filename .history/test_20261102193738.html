@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet" integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Purchase Management</h1>
+      
+<form class="row gy-2 gx-3 align-items-centre">
+ <div class="row"  >
+      <div class="col">
+          <label for="Purchase_Supplier" class="col-sm-2 col-form-label">Role</label>
+                    <select class="form-select form-control focus-ring form-control focus-ring" id="Purchase_Supplier">
+                        <option value="None">==Select Supplier==</option>
+                        <option value="ABC Pharma">ABC Pharma</option>
+                        <option value="XYZ Pharmaceuticals">XYZ Pharmaceuticals</option>
+                        <option value="123 Meds">123 Meds</option>
+                    </select>
+      </div>
+       <div class="col">
+                <label for="Add_PurchaseDate" class="col-sm-2 col-form-label">PurchaseDate</label>
+                <input type="date" class="form-control form-control focus-ring" id="Add_PurchaseDate" placeholder="Enter purchase date">
+            </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label for="Add_Medicine" class="col-sm-2 col-form-label">Medicine</label>
+        <input type="text" class="form-control form-control focus-ring" id="Add_Medicine" placeholder="Enter medicine name">
+    </div>
+     <div class="col">
+        <label for="Add_BatchNum" class="col-sm-2 col-form-label">Batch Number</label>
+        <input type="text" class="form-control form-control focus-ring" id="Add_BatchNum" placeholder="Enter Batch number">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <label for="Add_Manufacture" class="col-sm-2 col-form-label">Manufacturer</label>
+        <input type="text" class="form-control form-control focus-ring" id="Add_Manufacture" placeholder="Enter manufacturer name">
+    </div>
+     <div class="col">
+        <label for="Add_ExpiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
+        <input type="date" class="form-control form-control focus-ring" id="Add_ExpiryDate" placeholder="Enter expiry date">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <label for="Add_Quantity" class="col-sm-2 col-form-label">Quantity</label>
+        <input type="text" class="form-control form-control focus-ring" id="Add_Quantity" placeholder="Enter quantity">
+    </div>
+     <div class="col">
+        <label for="Add_PurchasePrice" class="col-sm-2 col-form-label">Purchase Price</label>
+        <input type="text" class="form-control form-control focus-ring" id="Add_PurchasePrice" placeholder="Enter purchase price">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <label for="Add_SellingPrice" class="col-sm-2 col-form-label">Selling Price</label>
+        <input type="text" class="form-control form-control focus-ring" id="Add_SellingPrice" placeholder="Enter selling price">
+    </div>
+     <div class="col">
+        <label for="Add_Remarks" class="col-sm-2 col-form-label">Remarks</label>
+        <input type="text" class="form-control form-control focus-ring pb-3" id="Add_Remarks" placeholder="Enter remarks">
+        
+    </div>
+</div>
+</form>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<div class="container py-3">
+    <div class="card p-4 shadow-sm mb-4">
+        <h4 class="mb-3 text-primary">Reports</h4>
+        <form id="issue_form">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="Issue_Medicine" class="form-label fw-semibold">Re</label>
+                    <select id="Issue_Medicine" class="form-select focus-ring">
+                        <option value="None">Select Medicine</option>
+                        <option value="Paracetamol">Paracetamol</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Batch" class="form-label fw-semibold">Batch</label>
+                    <select id="Issue_Batch" class="form-select focus-ring">
+                        <option value="None">Select Batch</option>
+                        <option value="P001">P001</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-semibold">Available Stock</label>
+                    <input type="text" id="Available_Stock_Val" class="form-control focus-ring" readonly value="100">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Quantity" class="form-label fw-semibold">Issue Quantity</label>
+                    <input type="number" id="Issue_Quantity" class="form-control focus-ring" placeholder="Enter quantity">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Customer" class="form-label fw-semibold">Customer</label>
+                    <input type="text" id="Issue_Customer" class="form-control focus-ring" placeholder="Customer name">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Date" class="form-label fw-semibold">Issue Date</label>
+                    <input type="date" id="Issue_Date" class="form-control focus-ring">
+                </div>
+                <div class="col-12">
+                    <label for="Issue_Remarks" class="form-label fw-semibold">Remarks</label>
+                    <input type="text" id="Issue_Remarks" class="form-control focus-ring" placeholder="Optional notes">
+                </div>
+            </div>
+
+            <p id="Issue_validity" class="text-danger small mt-2 mb-3 text-center"></p>
+
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <button type="button" class="btn btn-primary rounded-pill" id="Issue_Btn">Issue Medicine</button>
+            </div>
+        </form>
+    </div>

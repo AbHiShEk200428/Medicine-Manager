@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Manager</title>
+<link rel="icon" href="images/icon.jpg" type="image/x-icon">
+<script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet" integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
+ 
+</head>
+<body class="bg-success-subtle"> 
+
+
+  <section id="Navbar_section ">
+      <nav class="navbar navbar-expand-lg pb-3 pt-3 navbar-light border-bottom shadow-md" >
+            <div class="container-fluid ">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPillsExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="images\icon.png" width="100" /></a>
+              </a>
+              
+             
+              <ul class="nav nav-pills"  >
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" data-bs-toggle="pill" href="#"style="color: black;">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="pill" style="color: black;">Finance</a>
+                </li> 
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="pill" style="color:  black;">About</a>
+                </li>
+              </ul>
+
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown dropstart">
+                  <a class="avatar" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="images\avatar.jpg" />
+                  </a>
+                  <ul class="dropdown-menu  " >
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="register.html">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+              
+            </div>
+          </nav>
+</section>
+
+<section id="Main_content">
+  
+<div class="d-flex pt-3 mt-2 pr-2 border-3">
+
+  <div   class="col-2 mt-5" style="border-right: solid gray 2px;height: 10;"> > 
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="nav-link active" id="ParentTab1" data-bs-toggle="pill" data-bs-target="#v-pills-Daily" type="button" role="tab" aria-controls="v-pills-Daily" aria-selected="true">Daily</button>
+        <button class="nav-link" id="ParentTab2" data-bs-toggle="pill" data-bs-target="#v-pills-Inventory" type="button" role="tab" aria-controls="v-pills-Inventory" aria-selected="false">Inventory</button>
+        <button class="nav-link" id="ParentTab3" data-bs-toggle="pill" data-bs-target="#v-pills-Occasional" type="button" role="tab" aria-controls="v-pills-Occasional" aria-selected="false">Occasional</button>
+      </div> 
+      
+  </div>
+ 
+
+  <div class="flex-fill col-8" style="width:256px">
+          
+      <div id="Daily_Elements">
+        <ul class="nav nav-fill nav-tabs" role="tablist">
+      <li class="nav-item" id="Dashboardtab_Li" role="presentation">
+          <button class="nav-link active" id="Dashboardtab_Btn" data-bs-toggle="tab" data-bs-target="#pane1" data-bs-file="dashboard.html" type="button" role="tab"> Dashboard </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Transactionstab_Btn" data-bs-toggle="tab" data-bs-target="#pane4" data-bs-file="transactions.html"  role="tab"> Transactions </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="LowStocktab_Btn" data-bs-toggle="tab" data-bs-target="#pane9" data-bs-file="low_stock.html"  role="tab"> Low Stock </button>
+        </li>
+      </ul>
+      </div>
+      <div id="Inventory_Elements">
+        
+      <ul class="nav nav-fill nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Inventorytab_Btn" data-bs-toggle="tab" data-bs-target="#pane2" data-bs-file="inventory.html"  role="tab"> Inventory </button>
+        </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Medicinetab_Btn" data-bs-toggle="tab" data-bs-target="#pane7" data-bs-file="medicine_management.html"  role="tab"> Medicine </button>
+        </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Supplierstab_Btn" data-bs-toggle="tab" data-bs-target="#pane8" data-bs-file="supplier_management.html"  role="tab"> Suppliers </button>
+        </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Batchtab_Btn" data-bs-toggle="tab" data-bs-target="#pane10" data-bs-file="batch_management.html"  role="tab"> Batch Management </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Expirytab_Btn" data-bs-toggle="tab" data-bs-target="#pane11" data-bs-file="expiry.html"  role="tab"> Expiry </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Purchasetab_Btn" data-bs-toggle="tab" data-bs-target="#pane12" data-bs-file="purchase_management.html"  role="tab"> Purchases </button>
+        </li>
+      </ul>
+
+      </div>
+      <div id="Occasional_Elements">
+        <ul class="nav nav-fill nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="MedIssuestab_Btn" data-bs-toggle="tab" data-bs-target="#pane3" data-bs-file="issue.html"    role="tab"> Medicine Issues </button>
+        </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Userstab_Btn" data-bs-toggle="tab" data-bs-target="#pane6" data-bs-file="users.html"  role="tab"> Users </button>
+        </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Returnstab_Btn" data-bs-toggle="tab" data-bs-target="#pane13" data-bs-file="return.html"  role="tab"> Returns </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="Reportstab_Btn" data-bs-toggle="tab" data-bs-target="#pane14" data-bs-file="reports.html"  role="tab"> Reports </button>
+        </li>
+      </ul>
+      </div>
+
+      <div class="tab-content p-4 bg-success-subtle" id="myTabContent">
+
+                  <div class="tab-pane fade show active" id="pane1" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  
+                  <div class="tab-pane fade" id="pane2" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div> 
+                  <div class="tab-pane fade" id="pane3" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane4" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane5" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane6" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane7" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane8" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                    <div class="tab-pane fade" id="pane9" role="tabpanel" tabindex="0">
+                        <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                    </div>
+                    <div class="tab-pane fade" id="pane10" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane11" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane12" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane13" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+                  <div class="tab-pane fade" id="pane14" role="tabpanel" tabindex="0">
+                      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                  </div>
+              </div>
+
+    </div> 
+</div>
+</section>
+
+ 
+ 
+
+
+
+  
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

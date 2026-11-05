@@ -1,0 +1,105 @@
+
+
+<div style="text-align: left;">
+        <div>
+         <label for="">Search:</label> <br>
+        <input type="text" id="Search_input">
+    </div>
+   
+<br>
+    <div>
+        <label for="">Category</label> <br>
+        <select name="" id="Select_Category">
+            <option value="None">==Select==</option>
+            <option value="Painkillers">Painkillers</option>
+            <option value="Antibiotics">Antibiotics</option> 
+        </select>
+    </div>
+
+<br>
+    <div>
+        <label for="Select_Status">Status</label><br> 
+        <select name="" id="Select_Status"> 
+            <option value="None">==Select==</option>
+            <option value="IN STOCK">IN STOCK</option>
+            <option value="LOW STOCK">LOW STOCK</option>
+        </select>
+    </div>
+
+    <br>
+    <button type="button" id="Search_Btn">Search</button>
+</div>
+    <p id="Search_validity"></p>
+
+
+
+    <table id="Inventory_Table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Medicine</th>
+            <th>Batch</th>
+            <th>Quantity</th>
+            <th>Reorder Level||Status</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr> 
+            <td>Paracetamol</td>
+            <td>P001</td>
+            <td>100</td>
+            <td>20</td>
+            <td>IN STOCK</td>
+        </tr>
+        <tr>
+            <td>Amoxicillia</td>
+            <td>A001</td>
+            <td>10</td>
+            <td>20</td>
+            <td>LOW STOCK</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+        $("#Search_Btn").click(function(e){
+        e.preventDefault();
+    let Search_input=document.getElementById("Search_input").value;
+    let Inventory_Category= document.getElementById("Select_Category").value;
+    let Inventory_Status= document.getElementById("Select_Status").value;
+
+    Search_input=Search_input.toLowerCase().trim();
+    Inventory_Category=Inventory_Category.toLowerCase().trim();
+    Inventory_Status=Inventory_Status.toLowerCase().trim();
+    
+    if(Search_input==""||Search_input==null){
+        $("#Search_validity").text("Enter in search input");
+        }
+        else if(Inventory_Category=="none"){
+            $("#Search_validity").text("Select a Medicine category");
+        }
+        else if(Inventory_Status=="none"){
+            $("#Search_validity").text("Select a Medicine status");
+        }
+       
+        $("#Inventory_Table tbody tr").each(function(){
+        
+            let row_search=$(this).text().toLowerCase();
+            
+            if(row_search.includes(Search_input)){
+                if(row_search.includes(Inventory_Category)){
+                    if(row_search.includes(Inventory_Status)){
+                        $(this).show();
+                    }
+                }
+                
+            }
+            else{
+                $(this).hide();
+            } 
+        });
+
+    });  
+    });
+</script>

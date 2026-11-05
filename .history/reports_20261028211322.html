@@ -1,0 +1,40 @@
+<div class="container py-3">
+    <div class="card p-4 shadow-sm mb-4">
+        <h4 class="mb-3 text-primary">Reports</h4>
+        <form id="issue_form">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="Issue_Medicine" class="form-label fw-semibold">Report Type</label>
+                    <select id="Issue_Medicine" class="form-select focus-ring">
+                        <option value="None">Select Report</option>
+                        <option value="Sales">Sales Report</option>
+                        <option value="Inventory">Inventory Report</option>
+                    </select>
+                </div>
+             
+              <div class="col-md-4">
+                    <label for="Issue_Date" class="form-label fw-semibold">Issue Date</label>
+                    <input type="date" id="Issue_Date" class="form-control focus-ring">
+                </div>
+                <div class="col-md-4">
+                    <label for="Issue_Date" class="form-label fw-semibold">Issue Date</label>
+                    <input type="date" id="Issue_Date" class="form-control focus-ring">
+                </div>
+                   <div class="col-md-4">
+                    <label for="Issue_Batch" class="form-label fw-semibold">Batch</label>
+                    <select id="Issue_Batch" class="form-select focus-ring">
+                        <option value="None">Select Batch</option>
+                        <option value="P001">P001</option>
+                    </select>
+                </div>
+                
+               
+            </div>
+
+            <p id="Issue_validity" class="text-danger small mt-2 mb-3 text-center"></p>
+
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <button type="button" class="btn btn-primary rounded-pill" id="Issue_Btn">Issue Medicine</button>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,105 @@
+<div class="container py-3">
+    <!-- Search & Filter Card -->
+    <div class="card p-3 mb-4 shadow-sm">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="inv_search_input" class="form-label fw-semibold">Search Medicine</label>
+                <input type="search" id="inv_search_input" class="form-control focus-ring" placeholder="Enter medicine name...">
+            </div>
+            <div class="col-md-3">
+                <label for="inv_category" class="form-label fw-semibold">Category</label>
+                <select id="inv_category" class="form-select focus-ring">
+                    <option value="all">All Categories</option>
+                    <option value="painkillers">Painkillers</option>
+                    <option value="antibiotics">Antibiotics</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="inv_status" class="form-label fw-semibold">Status</label>
+                <select id="inv_status" class="form-select focus-ring">
+                    <option value="all">All Statuses</option>
+                    <option value="in stock">In Stock</option>
+                    <option value="low stock">Low Stock</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 gap-2 mx-auto mt-3">
+                <button type="button" id="inv_search_btn" class="btn btn-info w-100">Filter</button>
+            </div>
+        <p id="inv_search_validity" class="text-danger small mt-2 mb-0"></p>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table id="Inventory_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Reorder Level</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Paracetamol</td>
+                    <td>P001</td>
+                    <td>100</td>
+                    <td>20</td>
+                    <td><span class="badge bg-success">IN STOCK</span></td>
+                </tr>
+                <tr>
+                    <td>Amoxicillin</td>
+                    <td>A001</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td><span class="badge bg-danger">LOW STOCK</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#inv_search_btn").click(function(e){
+        e.preventDefault();
+    let Search_input=document.getElementById("inv_search_input").value;
+    let Inventory_Category= document.getElementById("inv_category").value;
+    let Inventory_Status= document.getElementById("inv_status").value;
+
+    Search_input=Search_input.toLowerCase().trim();
+    Inventory_Category=Inventory_Category.toLowerCase().trim();
+    Inventory_Status=Inventory_Status.toLowerCase().trim();
+    
+    if(Search_input==""||Search_input==null){
+        $("#inv_search_validity").text("Enter in search input");
+        }
+        else if(Inventory_Category=="none"){
+            $("#inv_search_validity").text("Select a Medicine category");
+        }
+        else if(Inventory_Status=="none"){
+            $("#inv_search_validity").text("Select a Medicine status");
+        }
+       
+        $("#Inventory_Table tbody tr").each(function(){
+        
+            let row_search=$(this).text().toLowerCase();
+            
+            if(row_search.includes(Search_input)){
+                if(row_search.includes(Inventory_Category)){
+                    if(row_search.includes(Inventory_Status)){
+                        $(this).show();
+                    }
+                }
+                
+            }
+            else{
+                $(this).hide();
+            } 
+        });
+
+    });  
+    });
+</script>
