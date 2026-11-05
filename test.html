@@ -1,116 +1,41 @@
- 
-    <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet" integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
- 
-<div class="container py-3">
-    <div class="card p-4 shadow-sm mb-4">
-        <h4 class="mb-3 text-primary">Add Purchase</h4>
-
-        <form class="row gy-2 gx-3 align-items-centre">
-          <div class="row"  >
-                <div class="col">
-                    <label for="Purchase_Supplier" class="col-sm-2 col-form-label">Role</label>
-                              <select class="form-select form-control focus-ring form-control focus-ring" id="Purchase_Supplier">
-                                  <option value="None">==Select Supplier==</option>
-                                  <option value="ABC Pharma">ABC Pharma</option>
-                                  <option value="XYZ Pharmaceuticals">XYZ Pharmaceuticals</option>
-                                  <option value="123 Meds">123 Meds</option>
-                              </select>
-                </div>
-                <div class="col">
-                          <label for="Add_PurchaseDate" class="col-sm-2 col-form-label">PurchaseDate</label>
-                          <input type="date" class="form-control form-control focus-ring" id="Add_PurchaseDate" placeholder="Enter purchase date">
-                      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+            <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-4/assets/css/chart-4.css">
+</head>
+<body>
+    <!-- Chart 4 - Bootstrap Brain Component -->
+<section class="py-3 py-md-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-9 col-xl-8 col-xxl-7">
+        <div class="card widget-card border-light shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-block d-sm-flex align-items-center justify-content-between mb-3">
+              <div class="mb-3 mb-sm-0">
+                <h5 class="card-title widget-card-title">Department Sales</h5>
+              </div>
+              <div>
+                <select class="form-select text-secondary border-light-subtle">
+                  <option value="1">March 2023</option>
+                  <option value="2">April 2023</option>
+                  <option value="3">May 2023</option>
+                  <option value="4">June 2023</option>
+                </select>
+              </div>
+            </div>
+            <div id="bsb-chart-4"></div>
           </div>
-
-          <div class="row">
-              <div class="col">
-                  <label for="Add_Medicine" class="col-sm-2 col-form-label">Medicine</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_Medicine" placeholder="Enter medicine name">
-              </div>
-              <div class="col">
-                  <label for="Add_BatchNum" class="col-sm-2 col-form-label">Batch Number</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_BatchNum" placeholder="Enter Batch number">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <label for="Add_Manufacture" class="col-sm-2 col-form-label">Manufacturer</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_Manufacture" placeholder="Enter manufacturer name">
-              </div>
-              <div class="col">
-                  <label for="Add_ExpiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
-                  <input type="date" class="form-control form-control focus-ring" id="Add_ExpiryDate" placeholder="Enter expiry date">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <label for="Add_Quantity" class="col-sm-2 col-form-label">Quantity</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_Quantity" placeholder="Enter quantity">
-              </div>
-              <div class="col">
-                  <label for="Add_PurchasePrice" class="col-sm-2 col-form-label">Purchase Price</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_PurchasePrice" placeholder="Enter purchase price">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <label for="Add_SellingPrice" class="col-sm-2 col-form-label">Selling Price</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_SellingPrice" placeholder="Enter selling price">
-              </div>
-              <div class="col">
-                  <label for="Add_Remarks" class="col-sm-2 col-form-label">Remarks</label>
-                  <input type="text" class="form-control form-control focus-ring" id="Add_Remarks" placeholder="Enter remarks">
-              </div>
-              
-          </div>
-
-            
-              <p id="Purchase_Validity" class="text-danger small mt-2 mb-3 text-center"></p>
-
-              <div class="d-grid gap-2 col-md-6 mx-auto">
-                  <button type="button" class="btn btn-primary rounded-3 gap-4 btn-lg" id="Add_PurchaseBtn">Add Purchase</button>
-              </div>
-          </form>
-
+        </div>
+      </div>
     </div>
-
-       <div class="input-group mb-4 col-md-6 gap-2">
-        <input type="search" id="purchase_search_input" class="form-control form-control-lg focus-ring col-md-6" placeholder="Search purchases...">
-        <button id="purchase_search_btn" class="btn btn-info col-md-4 gap-3">Search</button>
-    </div>
-
-        <div class="table-responsive">
-        <table id="Purchase_Table" class="table table-hover text-center text-nowrap table-bordered align-middle">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Supplier</th>
-                    <th scope="col">Medicine</th>
-                    <th scope="col">Batch</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Expiry Date</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>ABC</td>
-                    <td>Paracetamol</td>
-                    <td>P001</td>
-                    <td>100</td>
-                    <td>09-09-26</td>
-                    <td>
-                        <button class="btn btn-sm btn-light border"><img src="images/edit.png" width="16" /></button>
-                        <button class="btn btn-sm btn-light border"><img src="images/trash.png" width="16" /></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
- 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
- 
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://unpkg.com/bs-brain@2.0.4/components/charts/chart-4/assets/controller/chart-4.js"></script>
+</body>
+</html>
