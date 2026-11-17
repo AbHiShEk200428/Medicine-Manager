@@ -1,0 +1,89 @@
+<div class="container py-3">
+
+    <!-- Search Box -->
+    <div class="input-group mb-4 col-md-6 gap-2">
+        <input type="search" id="med_search_input" class="form-control form-control-lg focus-ring col-md-6" placeholder="Search medicines...">
+        <button id="med_search_btn" class="btn btn-info col-md-4 gap-3">Search</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table id="Medicine_table" class="table table-hover text-center text-nowrap table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Strength</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Paracetamol</td>
+                    <td>Painkiller</td>
+                    <td>500mg</td>
+                    <td>
+                        <button class="btn btn-sm btn-light border"><img src="images/edit.png" width="16" /></button>
+                        <button class="btn btn-sm btn-light border"><img src="images/trash.png" width="16" /></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+       
+$(document).ready(function(){
+   
+        Medicine_validity.textContent="Reorder is required";
+
+    }
+    else if(Description==""||Description==null){
+        Medicine_validity.textContent="Description is required";
+
+    }
+    
+    else{
+        $("#Medicine_table tbody").append(new_row);//Add new table row
+        Medicine_ID++; //Increment ID
+        //Reset input field=
+        MedName= document.getElementById("Add_Medname").value="";
+        GenName=document.getElementById("Add_Genname").value="";
+        Category= document.getElementById("Add_Category").value="";
+        Manufacturer= document.getElementById("Add_Manufacturer").value="";
+        Dosage= document.getElementById("Add_Dosage").value="";
+        Strength= document.getElementById("Add_Strength").value="";
+        Reorder= document.getElementById("Add_ReorderLvL").value="";
+        Description= document.getElementById("Add_Description").value="";
+    }  
+    });
+
+    $("#med_search_btn").click(function(e){
+            e.preventDefault();
+        let Search_input=document.getElementById("med_search_input").value;
+        Search_input=Search_input.toLowerCase();
+        if(Search_input==""||Search_input==null){
+            $("#med_search_validity").text("Enter in search input");
+        }
+        
+            $("#Medicine_table tbody tr").each(function(){
+            
+                let row_search=$(this).text().toLowerCase();
+                
+                if(row_search.includes(Search_input)){
+                    $(this).show();
+                }
+                else{
+                    $(this).hide();
+                } 
+            });
+
+        });
+    
+
+});
+
+</script>

@@ -137,7 +137,15 @@
     <br>
         <label for="Login_password">Password</label>
         <input type="password" id="Login_password">
-        <br>
+    <br>
+    <label for="role" >Role</label>
+                <select id="Add_Role">
+                    <option value="None">Select role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Pharmasist">Pharmasist</option>
+                    <option value="InventoryStaff">InventoryStaff</option>
+                </select>
+    <br>
         <label for="remember" style="display: inline;">Remember me</label>
         <input type="checkbox" style="display: inline">
 <br>
@@ -153,6 +161,7 @@
 
         const Username=document.getElementById("Login_username").value;
         const Password=document.getElementById("Login_password").value;
+        const Role=document.getElementById("Add_Role").value;
         const Login_validity= document.getElementById("Login_validity");
         const passlength= Password.length;
         const Username_length= Username.length;
@@ -170,8 +179,22 @@
             Login_validity.textContent="Password cant be less than 8 characters";
         }
         else{
-            window.location.href= "user_management.html"
+             switch(Role){
+            case "Admin":
+                window.location.href="index.html";
+                break;
+            case "Pharmasist":
+                window.location.href="Pharmasist_Index.html";
+                break;
+            case "InventoryStaff":
+                window.location.href="InventoryStaff_Index.html";
+                break;
+            default:
+                Login_validity.textContent="Select a valid role";
         }
+        }
+
+       
     })
 </script>
 </div> 
@@ -266,7 +289,7 @@
             Register_validity.textContent = "The confirm pass doesnt match";
         }
         else {
-            window.location.href = "user_management.html";
+            window.location.href = "index.html";
         }
 
     });
